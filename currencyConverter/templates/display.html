@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block content %}
+		
+<div class="container-fluid" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-4 mx-auto">
+          <div class="card card-signin flex-row my-5">
+            <div class="card-img-left d-none d-md-flex">
+               <!-- Background image for card set in CSS! -->
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-center">Converted</h5>
+              <div class="card-body text-center mt-5 pt-5">
+                <p class="card-text" > Your Amount : </p>
+                <p class="card-text"> {{ converted_amount }} : Fbu </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+   
+  </div>
+
+{% endblock %}
+ 
