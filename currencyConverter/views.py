@@ -23,7 +23,6 @@ def index(request):
 				print("#################################\n")
 				print("Converter amount = %s",str(converted_amount))
 				print("#################################\n")
-
 	convert_form = ConvertForm()
 	return render(request, template_name, locals())
 
