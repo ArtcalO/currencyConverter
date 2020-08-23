@@ -8,4 +8,4 @@ Money Converter App in django
 
 3. after ading countries and currency go back to home and start converting
 
-N.B :  For now display in browser do not works , viewing result in terminal
+4. The display shows up automaticaly
