@@ -15,7 +15,7 @@
               <form method="post" enctype="multipart/form-data" action="." class="form-signin">
                 {% csrf_token %}
                  {{ convert_form.as_p }}
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Convert</button>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" name="submit" type="submit">Convert</button>
                 <button type="submit" class="btn btn-lg btn-outline-success btn-block text-uppercase" name="switch" value="switch">
             Switch
           </button>
@@ -23,8 +23,7 @@
             </div>
           </div>
         </div>
-
-        
+        {% if convert %}
 
         <div class="col-md-2 card bg-light my-5">
           <div class="card-body text-center mt-5 pt-5">
@@ -32,6 +31,8 @@
             <p class="card-text"> {{ converted_amount }} : Fbu </p>
           </div>
         </div>
+
+        {% endif %}
 
       </div>
     </div>

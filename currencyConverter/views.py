@@ -9,19 +9,22 @@ from django.contrib import messages
 
 
 def index(request):
-	query_amount_to=1
 	template_name='home.html'
 	convert_form = ConvertForm(request.POST)
 	if(request.method=='POST'):
-		if(convert_form.is_valid()):
-			amount = convert_form.cleaned_data['amount']
-			from_ = convert_form.cleaned_data['country_from']
-			to_ = convert_form.cleaned_data['country_to']
-			query_amount_to = Currency.objects.get(country_from = from_, country_to=to_).amount_to
-			return redirect(display)
+		if 'submit' in request.POST:
+			if(convert_form.is_valid()):
+				convert = True;
+				amount = convert_form.cleaned_data['amount']
+				from_ = convert_form.cleaned_data['country_from']
+				to_ = convert_form.cleaned_data['country_to']
+				query_amount_to = Currency.objects.get(country_from = from_, country_to=to_).amount_to
+				converted_amount = query_amount_to * float(amount)
+				print("#################################\n")
+				print("Converter amount = %s",str(converted_amount))
+				print("#################################\n")
 
 	convert_form = ConvertForm()
-	converted_amount = 0
 	return render(request, template_name, locals())
 
 def display(request):
