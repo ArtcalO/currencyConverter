@@ -5,6 +5,16 @@
 <div class="container-fluid" >
     <div class="container">
       <div class="row">
+        {% if convert %}
+
+
+        <div class="col-md-6 col-md-4 mt-5 alert alert-info" style="height:10%;" role="alert" >
+          <span class="badge badge-info">Your Amount </span>
+            <span class="text-danger" >{{ amount }} {{ query_amount_to.country_from.country_currency }} </span>
+              = <span class="text-danger" >{{ converted_amount }} {{ query_amount_to.country_to.country_currency }}</span>
+        </div>
+
+        {% endif %}
         <div class="col-md-6 col-md-4 mx-auto">
           <div class="card card-signin flex-row my-5">
             <div class="card-img-left d-none d-md-flex">
@@ -12,28 +22,24 @@
             </div>
             <div class="card-body">
               <h5 class="card-title text-center">Currency Converter</h5>
-              <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+              <div class="alert alert-info" role="alert" >
+                <span class="badge badge-info">FORMULE : </span>
+                  <span class="text-danger" >1 Franc </span>
+                    de Country From = <span class="text-danger" >X Franc</span>
+                      de Country To
+              </div>
+              <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
                 {% csrf_token %}
-                 {{ convert_form.as_p }}
+                <label>Country From</label>
+                 <p>{{ convert_form.country_from }}</p>
+                 <label>Country To</label>
+                 <p>{{ convert_form.country_to }}</p>
+                 <p>{{ convert_form.amount }}</p>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" name="submit" type="submit">Convert</button>
-                <button type="submit" class="btn btn-lg btn-outline-success btn-block text-uppercase" name="switch" value="switch">
-            Switch
-          </button>
               </form>
             </div>
           </div>
         </div>
-        {% if convert %}
-
-        <div class="col-md-2 card bg-light my-5">
-          <div class="card-body text-center mt-5 pt-5">
-            <p class="card-text" > Your Amount : </p>
-            <p class="card-text"> {{ converted_amount }} : Fbu </p>
-          </div>
-        </div>
-
-        {% endif %}
-
       </div>
     </div>
    

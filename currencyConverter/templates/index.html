@@ -55,22 +55,15 @@
 
 
 {% block footer %}
-    <footer class=" bg-primary ftco-footer ftco-bg-dark ftco-section img" >
+    <footer >
     	<div class="overlay"></div>
       <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2 text-center">Currency Converter</h2>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-md-12 text-center">
 
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <p class="text-info">Simple, Fast, Economic |
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	</p>
           </div>
         </div>
       </div>
@@ -90,4 +83,5 @@
 	$('#country_to').chosen({ width: '100%' });
 
   </script>
+  <script type="text/javascript" src="{% static 'js/vue.min.js' %}" ></script>
 </html>
