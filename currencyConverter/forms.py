@@ -43,9 +43,9 @@ class CountryForm(forms.ModelForm):
 		attrs={'placeholder':'Country name','class':'form-control'}),
 		label='Country name'
 		)
-	country_code = forms.CharField(widget=forms.TextInput(
-			attrs={'placeholder':'Country Code ','class':'form-control'}),
-		label='Country Code'
+	country_currency = forms.CharField(widget=forms.TextInput(
+			attrs={'placeholder':'Country Curency ','class':'form-control'}),
+		label='Country Curency'
 		)
 
 	flag = forms.ImageField(

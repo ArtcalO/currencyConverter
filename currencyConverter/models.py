@@ -7,11 +7,11 @@ class Profil(models.Model):
 
 class Country(models.Model):
 	name = models.CharField(max_length=20)
-	country_code = models.CharField(max_length=5)
+	country_currency = models.CharField(max_length=20)
 	flag = models.ImageField(null=True, blank=True, upload_to='flags/')
 
 	def __str__(self):
-		return f"{self.name}({self.country_code})"
+		return f"{self.name}({self.country_currency})"
 
 class Currency(models.Model):
 	country_from = models.ForeignKey(Country, related_name="_country_from", on_delete=models.CASCADE)
