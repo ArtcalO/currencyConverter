@@ -18,25 +18,18 @@ def index(request):
 				amount = convert_form.cleaned_data['amount']
 				from_ = convert_form.cleaned_data['country_from']
 				to_ = convert_form.cleaned_data['country_to']
-				query_amount_to = Currency.objects.get(country_from = from_, country_to=to_).amount_to
-				converted_amount = query_amount_to * float(amount)
-				print("#################################\n")
-				print("Converter amount = %s",str(converted_amount))
-				print("#################################\n")
-	convert_form = ConvertForm()
+				query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
+				converted_amount = query_amount_to.amount_to * amount
+
+		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
+		convert_form = ConvertForm(initial=default_data)
 	return render(request, template_name, locals())
+
 
 def display(request):
 	index.converted_amount = index.query_amount_to * int(index.amount)
 	return render(request, 'display.html', locals())
 
-
-# class HomeView(View):
-# 	template_name = 'home.html'
-
-# 	def get(self, request, *args, **kwargs):
-# 		countries = Country.objects.all()
-# 		return render(request, self.template_name, locals())
 @login_required(login_url=('login'))
 def AdminView(request):
 	currencies = Currency.objects.all()
