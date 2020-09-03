@@ -8,7 +8,6 @@ class Profil(models.Model):
 class Country(models.Model):
 	name = models.CharField(max_length=20)
 	country_currency = models.CharField(max_length=20)
-	flag = models.ImageField(null=True, blank=True, upload_to='flags/')
 
 	def __str__(self):
 		return f"{self.name}({self.country_currency})"

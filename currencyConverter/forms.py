@@ -48,13 +48,6 @@ class CountryForm(forms.ModelForm):
 		label='Country Curency'
 		)
 
-	flag = forms.ImageField(
-		widget=forms.FileInput(
-			attrs={'placeholder':'Country Flag','class':'form-control'}
-		),
-		label='Country Flag'
-	)
-
 	class Meta:
 		model = Country
 		fields = '__all__'
@@ -102,7 +95,12 @@ class ConvertForm(forms.ModelForm):
         label = 'Country To',
         queryset = Country.objects.all())
 	amount = forms.FloatField(widget=forms.NumberInput(
-			attrs={'placeholder':'Amount ','class':'form-control'}),
+			attrs={'placeholder':'Amount ',
+					'class':'form-control',
+					'id':'amount',
+					'onkeyup':"myFunction()"
+				}
+			),
 		label='Amount')
 
 	class Meta:

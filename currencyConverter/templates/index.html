@@ -4,6 +4,17 @@
 <head>
 	<title>{% block title %}Accueil{% endblock %}</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<style type="text/css">
+	#firsttable{
+		float: left;
+		width: 50%;
+	}
+	@media only screen and (max-width: 768px) {
+  		#firsttable{
+		float: none;
+	}
+	}
+	</style>
 </head>
 <body>
 
