@@ -26,9 +26,6 @@ def index(request):
 	return render(request, template_name, locals())
 
 
-def display(request):
-	index.converted_amount = index.query_amount_to * int(index.amount)
-	return render(request, 'display.html', locals())
 
 @login_required(login_url=('login'))
 def AdminView(request):
@@ -139,4 +136,23 @@ def update(request, currency_id):
 			update_currency_form.save()
 			return redirect('admin')
 	update_currency_form = CurencyForm(instance=curency)
+	return render(request, "forms.html", locals())
+
+@login_required(login_url='/login/')
+def delete_c(request, country_id):
+	country = Country.objects.get(id=country_id)
+	country.delete()
+	return redirect('admin')
+
+
+@login_required(login_url='/login/')
+def update_c(request, country_id):
+	country = Country.objects.get(id=country_id)
+
+	update_country_form = CountryForm(request.POST,  instance = country)
+	if(request.method == 'POST'):
+		if(update_country_form.is_valid()):
+			update_country_form.save()
+			return redirect('admin')
+	update_country_form = CountryForm(instance=country)
 	return render(request, "forms.html", locals())

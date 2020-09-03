@@ -161,5 +161,30 @@
 
 
 {% endif %}
+
+{% if update_country_form %}
+   <div class="container-fluid" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-4 mx-auto">
+          <div class="card card-signin flex-row my-5">
+            <div class="card-img-left d-none d-md-flex">
+               <!-- Background image for card set in CSS! -->
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-center">Update Country</h5>
+              <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                {% csrf_token %}
+                 {{ update_country_form.as_p }}
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endif %}
 	
 {% endblock %}

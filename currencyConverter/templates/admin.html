@@ -25,104 +25,85 @@
 	      </div>
 	    </div>
 	</section>
+<div>
+<div class="table-responsive col-md-6" style="float:left">
+<h2 class="sub-header">List Currency</h2>
+            <table class="table table-striped">
+              <thead>
+              	<tr>
+                    <th >
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input checkAll">
+                            <label class="form-check-label">Id</label>
+                        </div>
+                    </th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Ocurency</th>
+                    <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for currency in currencies %}
+	                <tr>
+	                    <td class="col-md-1">
+	                        <div class="form-check">
+	                            <input type="checkbox" class="form-check-input">
+	                            <label class="form-check-label">{{ currency.id }}</label>
+	                        </div>
+	                    </td>
+	                    <td >{{ currency.country_from }}</td>
+	                    <td >{{ currency.country_to }}</td>
+	                    <td >{{ currency.amount_to }}</td>
+	                    <td >
+	                        <a type="button" href="{% url 'update' currency.id %}" class="btn btn-primary btn-sm">Update</a>
+	                        <a type="button"  href="{% url 'delete' currency.id %}" class="btn btn-danger btn-sm">Delete</a>
+	                    </td>
+	                </tr>
+	               {% endfor %} 
+              </tbody>
+            </table>
+          
+</div>
 
-	<div>
-	<div id="first_table" class="container-fluid">
-	    <div class="container">
-	      	<div class="row">
-	        	<div class="column mx-auto">
-	        		<div class="table-responsive">
-				        <table class="table display data-table text-nowrap">
-				            <thead>
-				                <tr>
-				                    <th>
-				                        <div class="form-check">
-				                            <input type="checkbox" class="form-check-input checkAll">
-				                            <label class="form-check-label">Id</label>
-				                        </div>
-				                    </th>
-				                    <th>From</th>
-				                    <th>To</th>
-				                    <th>Ocurency</th>
-				                    <th>Actions</th>
-				                </tr>
-				            </thead>
-
-				            <tbody>
-				                {% for currency in currencies %}
-				                <tr>
-				                    <td>
-				                        <div class="form-check">
-				                            <input type="checkbox" class="form-check-input">
-				                            <label class="form-check-label">{{ currency.id }}</label>
-				                        </div>
-				                    </td>
-				                    <td>{{ currency.country_from }}</td>
-				                    <td>{{ currency.country_to }}</td>
-				                    <td>{{ currency.amount_to }}</td>
-				                    <td>
-				                        <a type="button" href="{% url 'update' currency.id %}" class="btn btn-primary btn-sm">Update</a>
-				                        <a type="button"  href="{% url 'delete' currency.id %}" class="btn btn-danger btn-sm">Delete</a>
-				                    </td>
-				                </tr>
-				               {% endfor %} 
-				            </tbody>
-				        </table>
-				    </div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container-fluid" >
-	    <div class="container">
-	      	<div class="row">
-	        	<div class="column mx-auto">
-	        		<div class="table-responsive">
-				        <table class="table display data-table text-nowrap">
-				            <thead>
-				                <tr>
-				                    <th>
-				                        <div class="form-check">
-				                            <input type="checkbox" class="form-check-input checkAll">
-				                            <label class="form-check-label">Id</label>
-				                        </div>
-				                    </th>
-				                    <th>From</th>
-				                    <th>To</th>
-				                    <th>Ocurency</th>
-				                    <th>Actions</th>
-				                </tr>
-				            </thead>
-
-				            <tbody>
-				                {% for currency in currencies %}
-				                <tr>
-				                    <td>
-				                        <div class="form-check">
-				                            <input type="checkbox" class="form-check-input">
-				                            <label class="form-check-label">{{ currency.id }}</label>
-				                        </div>
-				                    </td>
-				                    <td>{{ currency.country_from }}</td>
-				                    <td>{{ currency.country_to }}</td>
-				                    <td>{{ currency.amount_to }}</td>
-				                    <td>
-				                        <a type="button" href="{% url 'update' currency.id %}" class="btn btn-primary btn-sm">Update</a>
-				                        <a type="button"  href="{% url 'delete' currency.id %}" class="btn btn-danger btn-sm">Delete</a>
-				                    </td>
-				                </tr>
-				               {% endfor %} 
-				            </tbody>
-				        </table>
-				    </div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	</div>
-
+<div class="table-responsive col-md-6" >
+          <h2 class="sub-header">List Countries</h2>
+            <table class="table table-striped">
+              <thead>
+              	<tr>
+                    <th >
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input checkAll">
+                            <label class="form-check-label">Id</label>
+                        </div>
+                    </th>
+                    <th >Name</th>
+                    <th >Currency</th>
+                    <th >Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for country in countries %}
+	                <tr>
+	                    <td >
+	                        <div class="form-check">
+	                            <input type="checkbox" class="form-check-input">
+	                            <label class="form-check-label">{{ country.id }}</label>
+	                        </div>
+	                    </td>
+	                    <td >{{ country.name }}</td>
+	                    <td >{{ country.country_currency }}</td>
+	                    <td>
+	                        <a type="button"  href="{% url 'update_c' country.id %}" class="btn btn-primary btn-sm">Update</a>
+	                        <a type="button" href="{% url 'delete_c' country.id %}" class="btn btn-danger btn-sm">Delete</a>
+	                    </td>
+	                </tr>
+	               {% endfor %} 
+              </tbody>
+            </table>
+</div>
+</div>
+  
 	<section class="ftco-section form-section" >
 	    <div class="container">
 	      <div class="row justify-content-center mb-5 pb-3">
