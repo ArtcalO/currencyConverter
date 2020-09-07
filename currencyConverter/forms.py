@@ -108,3 +108,29 @@ class ConvertForm(forms.ModelForm):
 		fields = ('country_from','country_to',)
 	
 
+class ContactForm(forms.Form):
+	subject = forms.CharField(
+        widget = forms.TextInput(
+            attrs = {'placeholder': 'Subject', 
+                    'class': 'form-control',
+                    }),
+        label = 'Subject',
+        )
+
+	message = forms.CharField(
+        widget = forms.Textarea(
+            attrs = {'placeholder': 'Your Message', 
+                    'class': 'form-control',
+                    }),
+        label = 'Message'
+        )
+
+	from_ = forms.EmailField(widget=forms.EmailInput(
+			attrs={'placeholder':'Your Email ','class':'form-control'}),
+		label='Amount',
+		required=True)
+
+	to_ = forms.EmailField(widget=forms.EmailInput(
+			attrs={'placeholder':'Email-To ','class':'form-control'}),
+		label='Amount',
+		required=True)
