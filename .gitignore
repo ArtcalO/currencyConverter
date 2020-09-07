@@ -1,7 +1,4 @@
 *.pyc
 
-
-db.sqlite3
-
-**/migrations/*
-**/media/*
+_migrations/*
+!_migrations/__init__.py
