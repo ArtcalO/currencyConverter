@@ -3,107 +3,105 @@
 {% block content %}
 
 {% if country_form %}
-    
-<div class="container-fluid" >
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-4 mx-auto">
-        <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-             <!-- Background image for card set in CSS! -->
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-center">Add Country</h5>
-            <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-              {% csrf_token %}
-              {{ country_form.as_p }}
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Add</button>
-            </form>
-          </div>
+
+<!-- contact_form -->
+    <div class="section contact_form mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 offset-lg-3">
+                    <div class="full">
+                      <h5 class="card-title text-center">Add Country</h5>
+                        
+                          <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                            <fieldset>
+                            {% csrf_token %}
+                            {{ country_form.as_p }}
+                            <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Add</button>
+                            </fieldset>
+                          </form>
+                          
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+    <!-- end contact_form -->
 
 {% endif %}
 
 {% if currency_form %}
 		
-  <div class="container-fluid" >
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-4 mx-auto">
-          <div class="card card-signin flex-row my-5">
-            <div class="card-img-left d-none d-md-flex">
-               <!-- Background image for card set in CSS! -->
+  <!-- contact_form -->
+    <div class="section contact_form mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 offset-lg-3">
+                    <div class="full">
+                      <h5 class="card-title text-center">Set Curency</h5>
+                        <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                            <fieldset>
+                              {% csrf_token %}
+                               {{ currency_form.as_p }}
+                                <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Set</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title text-center">Set Curency</h5>
-              <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-                {% csrf_token %}
-                 {{ currency_form.as_p }}
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Set</button>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+    <!-- end contact_form -->
 
 {% endif %}
 
 
 {% if switch_convert_form %}
-    
-  <div class="container-fluid" >
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-4 mx-auto">
-          <div class="card card-signin flex-row my-5">
-            <div class="card-img-left d-none d-md-flex">
-               <!-- Background image for card set in CSS! -->
+
+  <!-- contact_form -->
+    <div class="section contact_form mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 offset-lg-3">
+                    <div class="full">
+                       <h5 class="card-title text-center">Update Curency</h5>
+                        <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                          <fieldset>
+                          {% csrf_token %}
+                           {{ switch_convert_form.as_p }}
+                          <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Update</button>
+                          </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title text-center">Update Curency</h5>
-              <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-                {% csrf_token %}
-                 {{ switch_convert_form.as_p }}
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update</button>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+    <!-- end contact_form -->
 
 {% endif %}
 
 {% if update_currency_form %}
-    
-  <div class="container-fluid" >
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-4 mx-auto">
-          <div class="card card-signin flex-row my-5">
-            <div class="card-img-left d-none d-md-flex">
-               <!-- Background image for card set in CSS! -->
+
+    <!-- contact_form -->
+    <div class="section contact_form mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 offset-lg-3">
+                    <div class="full">
+                       <h5 class="card-title text-center">Update Curency</h5>
+                        <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                          <fieldset>
+                          {% csrf_token %}
+                           {{ update_currency_form.as_p }}
+                          <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Update</button>
+                          </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title text-center">Update Curency</h5>
-              <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-                {% csrf_token %}
-                 {{ update_currency_form.as_p }}
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update</button>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+    <!-- end contact_form -->
 
 {% endif %}
 
@@ -124,7 +122,7 @@
             <form method="post" enctype="multipart/form-data" action="." class="form-signin">
               {% csrf_token %}
               {{ connexion_form.as_p }}
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Connexion</button>
+              <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Connexion</button>
             </form>
           </div>
         </div>
@@ -132,58 +130,78 @@
     </div>
   </div>
 </div>
+
+<!-- contact_form -->
+    <div class="section contact_form mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 offset-lg-3">
+                    <div class="full">
+                       <h5 class="card-title text-center">Connexion</h5>
+                        <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                            <fieldset>
+                              {% csrf_token %}
+                              {{ connexion_form.as_p }}
+                              <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Connexion</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end contact_form -->
 
 {% endif %}
 
 {% if register_form %}
 
-<div class="container-fluid" >
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-xl-9 mx-auto">
-        <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-             <!-- Background image for card set in CSS! -->
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-center">Register</h5>
-            <form  class="form-control" action="{% url 'register' %}"  method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              {{ register_form.as_p }}
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-            </form>
-          </div>
+<!-- contact_form -->
+    <div class="section contact_form mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 offset-lg-3">
+                    <div class="full">
+                       <h5 class="card-title text-center">Register</h5>
+                        <form  class="form-control" action="{% url 'register' %}"  method="post" enctype="multipart/form-data">
+                          <fieldset>
+                            {% csrf_token %}
+                            {{ register_form.as_p }}
+                            <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Register</button>
+                          </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+    <!-- end contact_form -->
 
 
 {% endif %}
 
 {% if update_country_form %}
-   <div class="container-fluid" >
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-4 mx-auto">
-          <div class="card card-signin flex-row my-5">
-            <div class="card-img-left d-none d-md-flex">
-               <!-- Background image for card set in CSS! -->
+
+  <!-- contact_form -->
+    <div class="section contact_form mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 offset-lg-3">
+                    <div class="full">
+                       <h5 class="card-title text-center">Update Country</h5>
+                        <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                          <fieldset>
+                            {% csrf_token %}
+                             {{ update_country_form.as_p }}
+                            <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Update</button>
+                          </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title text-center">Update Country</h5>
-              <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-                {% csrf_token %}
-                 {{ update_country_form.as_p }}
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update</button>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+    <!-- end contact_form -->
 
 {% endif %}
 	

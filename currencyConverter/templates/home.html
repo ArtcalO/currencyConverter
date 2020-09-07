@@ -1,42 +1,32 @@
 {% extends 'index.html' %}
 
-{% block content %}
-   <section class="row justify-content-center">
-      <section class="col-12 col-sm-6 col-md-4 mt-5 pt-2 bg-success text-white">
-            <h5 class="card-title text-center" {% if convert %} style="display: none;" {% endif %}>Amount Entered : <span id="demo"></span></p></h5>
+{% block convert %}
+
+      <div class="col-md-6 layout_padding mt-0">
+          <div class="full paddding_left_15">
+              <div class="heading_main text_align_left">
+              {% if not convert %}
+                <h2><span class="theme_color" >Input : <span id="demo"></span></h2>
+              {% endif %}
+
               {% if convert %}
-              <div> 
-                <h5 class="text-center">Converted</h5>
-                <p class="text-center">
-                <span class="text-white" >{{ amount }} {{ query_amount_to.country_from.country_currency }} </span>
-                  = <span class="text-white" >{{ converted_amount }} {{ query_amount_to.country_to.country_currency }}</span>
-                  </p>
-            </div>
-            {% endif %}
-      </section>
-    </section>
-  </section>
-
-  <section class="container-fluid">
-    <!-- row and justify-content-center class is used to place the form in center -->
-    <section class="row justify-content-center">
-      <section class="col-12 col-sm-6 col-md-4 mt-5 mb-5">
-        <h5 class="card-title text-center">Currency Converter</h5>
-        <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
-                {% csrf_token %}
-                <label>Country From</label>
-                 <p>{{ convert_form.country_from }}</p>
-                 <label>Country To</label>
-                 <p>{{ convert_form.country_to }}</p>
-                 <p>{{ convert_form.amount }}</p>
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" name="submit" type="submit">Convert</button>
+                <h2><span class="theme_color" >Converted :</span> {{ amount }} {{ query_amount_to.country_from.country_currency }} = {{ converted_amount }} {{ query_amount_to.country_to.country_currency }} </h2>
+              {% endif %}
+              </div>
+          </div>
+          <div class="full paddding_left_15">
+              <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
+                      {% csrf_token %}
+                      <label>Country From</label>
+                       <p>{{ convert_form.country_from }}</p>
+                       <label>Country To</label>
+                       <p>{{ convert_form.country_to }}</p>
+                       <p>{{ convert_form.amount }}</p>
+                      <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="submit" type="submit">Convert</button>
               </form>
-      </section>
-    </section>
-  </section>
-
-
-       
+            </div>
+        </div>
+  
 <script type="text/javascript">
   function myFunction() {
     var x = document.getElementById("amount").value;
@@ -44,8 +34,6 @@
   }
 </script>
 </script>
-
-
 
 {% endblock %}
  

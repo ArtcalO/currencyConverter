@@ -6,6 +6,7 @@ from django.views import View
 from .models import *
 from .forms import *
 from django.contrib import messages
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -156,3 +157,53 @@ def update_c(request, country_id):
 			return redirect('admin')
 	update_country_form = CountryForm(instance=country)
 	return render(request, "forms.html", locals())
+
+
+def about(request):
+	convert_form = ConvertForm(request.POST)
+	if(request.method=='POST'):
+		if 'submit' in request.POST:
+			if(convert_form.is_valid()):
+				convert = True;
+				amount = convert_form.cleaned_data['amount']
+				from_ = convert_form.cleaned_data['country_from']
+				to_ = convert_form.cleaned_data['country_to']
+				query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
+				converted_amount = query_amount_to.amount_to * amount
+
+		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
+		convert_form = ConvertForm(initial=default_data)
+	return render(request, 'about.html', locals())
+
+def contact(request):
+	convert_form = ConvertForm(request.POST)
+	if(request.method=='POST'):
+		if 'submit' in request.POST:
+			if(convert_form.is_valid()):
+				convert = True;
+				amount = convert_form.cleaned_data['amount']
+				from_ = convert_form.cleaned_data['country_from']
+				to_ = convert_form.cleaned_data['country_to']
+				query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
+				converted_amount = query_amount_to.amount_to * amount
+
+		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
+		convert_form = ConvertForm(initial=default_data)
+
+	email_form = ContactForm(request.POST)
+	if(request.method == 'POST'):
+		if 'send' in request.POST:
+			if(email_form.is_valid()):
+				subject = email_form.cleaned_data['subject']
+				message = email_form.cleaned_data['message']
+				from_ = email_form.cleaned_data['from_']
+				to_ = email_form.cleaned_data['to_']
+				send_mail(
+				    subject,
+				    message,
+				    from_,
+				    [to_,],
+				    fail_silently=False,
+				)
+
+	return render(request, 'contact.html', locals())
