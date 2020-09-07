@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% block titre %}<title>About | Currency Converter</title>{% endblock %}
+
+{% block left_side %}
+  <div class="col-md-6 layout_padding">
+      <div class="full paddding_left_15">
+          <div class="heading_main text_align_left">
+             <h2><span class="theme_color">About Us</span></h2>    
+          </div>
+      </div>
+      <div class="full paddding_left_15">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+      </div>
+      
+  </div>
+  {% endblock %}
+
+{% block convert %}
+
+      <div class="col-md-6 layout_padding mt-0">
+          <div class="full paddding_left_15">
+              <div class="heading_main text_align_left">
+              {% if not convert %}
+                <h2><span class="theme_color" >Input : <span id="demo"></span></h2>
+              {% endif %}
+
+              {% if convert %}
+                <h2><span class="theme_color" >Converted :</span> {{ amount }} {{ query_amount_to.country_from.country_currency }} = {{ converted_amount }} {{ query_amount_to.country_to.country_currency }} </h2>
+              {% endif %}
+              </div>
+          </div>
+          <div class="full paddding_left_15">
+              <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
+                      {% csrf_token %}
+                      <label>Country From</label>
+                       <p>{{ convert_form.country_from }}</p>
+                       <label>Country To</label>
+                       <p>{{ convert_form.country_to }}</p>
+                       <p>{{ convert_form.amount }}</p>
+                      <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="submit" type="submit">Convert</button>
+              </form>
+            </div>
+        </div>
+  
+<script type="text/javascript">
+  function myFunction() {
+    var x = document.getElementById("amount").value;
+    document.getElementById("demo").innerHTML = x;
+  }
+</script>
+</script>
+
+{% endblock %}
+ 

@@ -1,4 +1,8 @@
 *.pyc
 
-_migrations/*
-!_migrations/__init__.py
+/migrations/*
+!migrations/__init__.py
+
+/media/
+
+000?_*.py
