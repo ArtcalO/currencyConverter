@@ -1,5 +1,20 @@
 {% extends 'index.html' %}
 {% block titre %}<title>Contact | Currency Converter</title>{% endblock %}
+
+{% block banner %}
+<div class="section inner_page_banner" style="background-image:url(../images/bg.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner_title">
+                    <h3>Contact</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block left_side %}
     <div class="col-md-6 layout_padding">
         <div class="full paddding_left_15">
@@ -26,7 +41,7 @@
 
 {% block convert %}
 
-      <div class="col-md-6 layout_padding mt-0">
+      <div class="col-md-6 layout_padding mt-0" style="background: #2a2a2a;">
           <div class="full paddding_left_15">
               <div class="heading_main text_align_left">
               {% if not convert %}

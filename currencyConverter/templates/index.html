@@ -96,28 +96,23 @@
     <!-- End header -->
 
 {% endblock %}
-    {% block banner %}
+
+{% block banner %}
     <div class="section inner_page_banner">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="banner_title">
-                        {% if "" in request.path %}
+                      
                         <h3>Home </h3>
-                        {% elif 'about' in request.path %}
-                            <h3>About us</h3>
-                        {% elif 'contact' in request.path %}
-                        <h3>Contact</h3>
-                        {% elif 'admin' in request.path %}
-                        <h3>Admin</h3>
-                        {% endif %}
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Banner -->
-    {% endblock %}
+{% endblock %}
 
 {% block content %}
  <!-- section -->
