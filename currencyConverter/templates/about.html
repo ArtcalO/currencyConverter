@@ -41,7 +41,7 @@
               {% endif %}
 
               {% if convert %}
-                <h2><span class="theme_color" >Converted :</span> {{ amount }} {{ query_amount_to.country_from.country_currency }} = {{ converted_amount }} {{ query_amount_to.country_to.country_currency }} </h2>
+                <button class="btn btn-lg btn-outline-light btn-block " name="submit" type="submit">Output : {{ amount }} {{ query_amount_to.country_from.country_currency }} = {{ converted_amount }} {{ query_amount_to.country_to.country_currency }}</button>
               {% endif %}
               </div>
           </div>
