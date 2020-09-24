@@ -11,7 +11,7 @@ from django.core.mail import send_mail
 
 def index(request):
 	template_name='home.html'
-	convert_form = ConvertForm(request.POST)
+	convert_form = ConvertForm(request.POST or None)
 	if(request.method=='POST'):
 		if 'submit' in request.POST:
 			if(convert_form.is_valid()):
