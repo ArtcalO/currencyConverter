@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block convert %}
-      
+
       <div class="col-md-6 layout_padding mt-0" style="background: #2a2a2a;">
           <div class="full paddding_left_15">
               <div class="heading_main text_align_left">
@@ -10,7 +10,7 @@
               {% endif %}
 
               {% if convert %}
-               <button class="btn btn-lg btn-outline-light btn-block " name="submit" type="submit">Output : {{ amount }} {{ query_amount_to.country_from.country_currency }} = {{ converted_amount }} {{ query_amount_to.country_to.country_currency }}</button>
+                <button class="btn btn-lg btn-outline-light btn-block " name="submit" type="submit">Output : {{ amount }} {{ query_amount_to.country_from.country_currency }} = {{ converted_amount }} {{ query_amount_to.country_to.country_currency }}</button>
               {% endif %}
               </div>
           </div>
@@ -22,7 +22,7 @@
                        <label>Country To</label>
                        <p>{{ convert_form.country_to }}</p>
                        <p>{{ convert_form.amount }}</p>
-                      <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color">Convert</button>
+                      <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="submit" type="submit">Convert</button>
               </form>
             </div>
         </div>
