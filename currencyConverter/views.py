@@ -19,8 +19,16 @@ def index(request):
 				amount = convert_form.cleaned_data['amount']
 				from_ = convert_form.cleaned_data['country_from']
 				to_ = convert_form.cleaned_data['country_to']
-				query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
-				converted_amount = query_amount_to.amount_to * amount
+				if (from_ == to_):
+					query_amount_to = Currency.objects.get(country_from = from_)
+					currency_from = query_amount_to.country_from.country_currency
+					currency_to = query_amount_to.country_from.country_currency
+					converted_amount = amount * 1
+				else:
+					query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
+					currency_from = query_amount_to.country_from.country_currency
+					currency_to = query_amount_to.country_to.country_currency
+					converted_amount = query_amount_to.amount_to * amount
 
 		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
 		convert_form = ConvertForm(initial=default_data)
@@ -168,8 +176,16 @@ def about(request):
 				amount = convert_form.cleaned_data['amount']
 				from_ = convert_form.cleaned_data['country_from']
 				to_ = convert_form.cleaned_data['country_to']
-				query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
-				converted_amount = query_amount_to.amount_to * amount
+				if (from_ == to_):
+					query_amount_to = Currency.objects.get(country_from = from_)
+					currency_from = query_amount_to.country_from.country_currency
+					currency_to = query_amount_to.country_from.country_currency
+					converted_amount = amount * 1
+				else:
+					query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
+					currency_from = query_amount_to.country_from.country_currency
+					currency_to = query_amount_to.country_to.country_currency
+					converted_amount = query_amount_to.amount_to * amount
 
 		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
 		convert_form = ConvertForm(initial=default_data)
@@ -184,8 +200,16 @@ def contact(request):
 				amount = convert_form.cleaned_data['amount']
 				from_ = convert_form.cleaned_data['country_from']
 				to_ = convert_form.cleaned_data['country_to']
-				query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
-				converted_amount = query_amount_to.amount_to * amount
+				if (from_ == to_):
+					query_amount_to = Currency.objects.get(country_from = from_)
+					currency_from = query_amount_to.country_from.country_currency
+					currency_to = query_amount_to.country_from.country_currency
+					converted_amount = amount * 1
+				else:
+					query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
+					currency_from = query_amount_to.country_from.country_currency
+					currency_to = query_amount_to.country_to.country_currency
+					converted_amount = query_amount_to.amount_to * amount
 
 		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
 		convert_form = ConvertForm(initial=default_data)
