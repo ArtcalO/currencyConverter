@@ -26,14 +26,12 @@
         <div class="full paddding_left_15">
               <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
                       {% csrf_token %}
-                      <label>Subject</label>
+                      <label>Your Email</label>
+                       <p>{{ email_form.from_ }}</p>
+                        <label>Subject</label>
                        <p>{{ email_form.subject }}</p>
                        <label>Message</label>
                        <p>{{ email_form.message }}</p>
-                       <label>Source</label>
-                       <p>{{ email_form.from_ }}</p>
-                       <label>Destination</label>
-                       <p>{{ email_form.to_ }}</p>
                       <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="send" type="submit">Send</button>
               </form>
             </div>

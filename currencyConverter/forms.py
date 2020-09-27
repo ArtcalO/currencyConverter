@@ -130,7 +130,3 @@ class ContactForm(forms.Form):
 		label='Amount',
 		required=True)
 
-	to_ = forms.EmailField(widget=forms.EmailInput(
-			attrs={'placeholder':'Email-To ','class':'form-control'}),
-		label='Amount',
-		required=True)

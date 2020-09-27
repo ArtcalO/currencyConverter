@@ -1,9 +1,24 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block titre %}<title>Admin | Currency Converter</title>{% endblock %}
 
+{% block banner %}
+    <div class="section inner_page_banner" style="background-image:url({% static 'new/images/home.png' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="banner_title">
+                        <h3>Admin</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+  {% endblock %}
 {% block content %}
 
-<section class="ftco-section form-section" >
+<div class="section mt-2" >
 	    <div class="container">
 	      <div class="row justify-content-center mb-5 pb-3">
 	        <div class="col-md-7 heading-section ftco-animate text-center">
@@ -11,19 +26,20 @@
 	              <form method="post" action=".">
 	              	{% csrf_token %}
 	              	<button type="submit" name="addCountry"  class="btn btn-outline-warning"> 
-                            </i> Add Countries
+                             Add Countries
                       </button>
 
                         <button type="submit" name="addCurrency" class="btn btn-outline-success">
-                            </i>Set Occurency
+                            Set Occurency
                         </button>
 	              </form>
 	          </div>
 	        </div>
 	      </div>
 	    </div>
-	</section>
-<div>
+</div>
+
+<div class="mt-5">
 <div class="table-responsive col-md-6" style="float:left">
 <h2 class="sub-header">List Currency</h2>
             <table class="table table-striped">
@@ -102,7 +118,7 @@
 </div>
 </div>
   
-	<section class="ftco-section form-section" >
+	<div class="section mt-2" >
 	    <div class="container">
 	      <div class="row justify-content-center mb-5 pb-3">
 	        <div class="col-md-7 heading-section ftco-animate text-center">
@@ -110,18 +126,18 @@
 	              <form method="post" action=".">
 	              	{% csrf_token %}
 	              	<button type="submit" name="addCountry"  class="btn btn-outline-warning"> 
-                            </i> Add Countries
+                             Add Countries
                       </button>
 
                         <button type="submit" name="addCurrency" class="btn btn-outline-success">
-                            </i>Set Occurency
+                            Set Occurency
                         </button>
 	              </form>
 	          </div>
 	        </div>
 	      </div>
 	    </div>
-	</section>
+</div>
 
 
 

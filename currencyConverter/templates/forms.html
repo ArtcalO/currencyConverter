@@ -5,12 +5,12 @@
 {% if country_form %}
 
 <!-- contact_form -->
-    <div class="section contact_form mt-5">
+    <div class="section contact_form">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
                     <div class="full">
-                      <h5 class="card-title text-center">Add Country</h5>
+                      <h4 class="card-title text-center">Add Country</h4>
                         
                           <form method="post" enctype="multipart/form-data" action="." class="form-signin">
                             <fieldset>
@@ -30,14 +30,14 @@
 {% endif %}
 
 {% if currency_form %}
-		
+    
   <!-- contact_form -->
-    <div class="section contact_form mt-5">
+    <div class="section contact_form">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
                     <div class="full">
-                      <h5 class="card-title text-center">Set Curency</h5>
+                      <h4 class="card-title text-center">Set Curency</h4>
                         <form method="post" enctype="multipart/form-data" action="." class="form-signin">
                             <fieldset>
                               {% csrf_token %}
@@ -58,12 +58,12 @@
 {% if switch_convert_form %}
 
   <!-- contact_form -->
-    <div class="section contact_form mt-5">
+    <div class="section contact_form">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
                     <div class="full">
-                       <h5 class="card-title text-center">Update Curency</h5>
+                       <h4 class="card-title text-center">Update Curency</h4>
                         <form method="post" enctype="multipart/form-data" action="." class="form-signin">
                           <fieldset>
                           {% csrf_token %}
@@ -83,12 +83,12 @@
 {% if update_currency_form %}
 
     <!-- contact_form -->
-    <div class="section contact_form mt-5">
+    <div class="section contact_form">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
                     <div class="full">
-                       <h5 class="card-title text-center">Update Curency</h5>
+                       <h4 class="card-title text-center">Update Curency</h4>
                         <form method="post" enctype="multipart/form-data" action="." class="form-signin">
                           <fieldset>
                           {% csrf_token %}
@@ -108,36 +108,14 @@
 
 
 {% if connexion_form %}
-		
-<div class="container-fluid" >
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-xl-6 mx-auto">
-        <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-             <!-- Background image for card set in CSS! -->
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-center">Connexion</h5>
-            <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-              {% csrf_token %}
-              {{ connexion_form.as_p }}
-              <button class="btn btn-lg btn-outline-warning theme_color btn-block text-uppercase" type="submit">Connexion</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- contact_form -->
-    <div class="section contact_form mt-5">
+    <div class="section contact_form">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
                     <div class="full">
-                       <h5 class="card-title text-center">Connexion</h5>
+                       <h4 class="card-title text-center">Connexion</h4>
                         <form method="post" enctype="multipart/form-data" action="." class="form-signin">
                             <fieldset>
                               {% csrf_token %}
@@ -157,12 +135,12 @@
 {% if register_form %}
 
 <!-- contact_form -->
-    <div class="section contact_form mt-5">
+    <div class="section contact_form ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
                     <div class="full">
-                       <h5 class="card-title text-center">Register</h5>
+                       <h4 class="card-title text-center">Register</h4>
                         <form  class="form-control" action="{% url 'register' %}"  method="post" enctype="multipart/form-data">
                           <fieldset>
                             {% csrf_token %}
@@ -183,12 +161,12 @@
 {% if update_country_form %}
 
   <!-- contact_form -->
-    <div class="section contact_form mt-5">
+    <div class="section contact_form ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
                     <div class="full">
-                       <h5 class="card-title text-center">Update Country</h5>
+                       <h4 class="card-title text-center">Update Country</h4>
                         <form method="post" enctype="multipart/form-data" action="." class="form-signin">
                           <fieldset>
                             {% csrf_token %}
@@ -204,5 +182,5 @@
     <!-- end contact_form -->
 
 {% endif %}
-	
+  
 {% endblock %}

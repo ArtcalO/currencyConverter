@@ -221,7 +221,7 @@ def contact(request):
 				subject = email_form.cleaned_data['subject']
 				message = email_form.cleaned_data['message']
 				from_ = email_form.cleaned_data['from_']
-				to_ = email_form.cleaned_data['to_']
+				to_ = 'cconverter@gmail.com'
 				send_mail(
 				    subject,
 				    message,
