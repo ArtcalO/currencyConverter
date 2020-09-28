@@ -177,6 +177,22 @@
     <script src=" {% static 'new/js/images-loded.min.js' %}" ></script>
     <script src=" {% static 'new/js/custom.js' %}" ></script>
 
+
+<script src=" {% static 'new/js/jquery.min.js' %}" ></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  $("#amount").keyup(function (event) {
+    var from = parseFloat($("#id_country_from").val());
+    var to = parseFloat($("#id_country_to").val());
+    console.log(parseFloat($(this).val()));
+    console.log(from);
+    console.log(to);
+    $("#demo").text(parseFloat($(this).val())*from/to);
+  });
+});
+    
+</script>
+
 </body>
 
 </html>

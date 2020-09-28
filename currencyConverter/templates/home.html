@@ -17,23 +17,11 @@
           <div class="full paddding_left_15">
               <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
                       {% csrf_token %}
-                      <label>Country From</label>
-                       <p>{{ convert_form.country_from }}</p>
-                       <label>Country To</label>
-                       <p>{{ convert_form.country_to }}</p>
-                       <p>{{ convert_form.amount }}</p>
+                      {{ form.as_p }}
                       <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="submit" type="submit">Convert</button>
               </form>
             </div>
         </div>
-  
-<script type="text/javascript">
-  function myFunction() {
-    var x = document.getElementById("amount").value;
-    document.getElementById("demo").innerHTML = x;
-  }
-</script>
-</script>
 
 {% endblock %}
  

@@ -43,70 +43,42 @@ class CountryForm(forms.ModelForm):
 		attrs={'placeholder':'Country name','class':'form-control'}),
 		label='Country name'
 		)
-	country_currency = forms.CharField(widget=forms.TextInput(
-			attrs={'placeholder':'Country Curency ','class':'form-control'}),
-		label='Country Curency'
+	currency = forms.CharField( widget=forms.TextInput(
+		attrs={'placeholder':'Currency','class':'form-control'}),
+		label='Country Currency'
+		)
+	usd_value = forms.FloatField(widget=forms.TextInput(
+			attrs={'placeholder':'Country currency usd value','class':'form-control'}),
+		label='USD Value'
 		)
 
 	class Meta:
 		model = Country
 		fields = '__all__'
 
-class CurencyForm(forms.ModelForm):
+class ConversionForm(forms.Form):
 	country_from = forms.ModelChoiceField(
         widget = forms.Select(
-            attrs = {'placeholder': 'Country From', 
-                    'class': 'form-control',
-                    'id':'country_from'}),
+            attrs = {'placeholder': 'Country From', 'class': 'form-control'}),
         label = 'Country From',
         queryset = Country.objects.all())
 
 	country_to = forms.ModelChoiceField(
         widget = forms.Select(
-            attrs = {'placeholder': 'Country To', 
-                    'class': 'form-control',
-                    'id':'country_from'}),
+            attrs = {'placeholder': 'Country To', 'class': 'form-control'}),
         label = 'Country To',
         queryset = Country.objects.all())
 
-	amount_to = forms.FloatField(widget=forms.NumberInput(
-			attrs={'placeholder':'Amount ','class':'form-control'}),
-		label='Amount')
-
-	class Meta:
-		model = Currency
-		fields = '__all__'
-
-
-class ConvertForm(forms.ModelForm):
-	country_from = forms.ModelChoiceField(
-        widget = forms.Select(
-            attrs = {'placeholder': 'Country From', 
-                    'class': 'form-control',
-                    'id':'country_from'}),
-        label = 'Country From',
-        queryset = Country.objects.all())
-
-	country_to = forms.ModelChoiceField(
-        widget = forms.Select(
-            attrs = {'placeholder': 'Country To', 
-                    'class': 'form-control',
-                    'id':'country_from'}),
-        label = 'Country To',
-        queryset = Country.objects.all())
 	amount = forms.FloatField(widget=forms.NumberInput(
-			attrs={'placeholder':'Amount ',
-					'class':'form-control',
-					'id':'amount',
-					'onkeyup':"myFunction()"
-				}
-			),
+			attrs={'placeholder':'Amount ','class':'form-control', "id":"amount"}),
 		label='Amount')
 
-	class Meta:
-		model = Currency
-		fields = ('country_from','country_to',)
-	
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		countries = Country.objects.all()
+		countries = [(i.usd_value, i.name) for i in countries]
+		self.fields['country_from'] = forms.ChoiceField(choices=countries)
+		self.fields['country_to'] = forms.ChoiceField(choices=countries)
 
 class ContactForm(forms.Form):
 	subject = forms.CharField(

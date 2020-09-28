@@ -27,11 +27,11 @@
               <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
                       {% csrf_token %}
                       <label>Your Email</label>
-                       <p>{{ email_form.from_ }}</p>
+                       <p>{{ form2.from_ }}</p>
                         <label>Subject</label>
-                       <p>{{ email_form.subject }}</p>
+                       <p>{{ form2.subject }}</p>
                        <label>Message</label>
-                       <p>{{ email_form.message }}</p>
+                       <p>{{ form2.message }}</p>
                       <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="send" type="submit">Send</button>
               </form>
             </div>
@@ -56,10 +56,10 @@
               <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
                       {% csrf_token %}
                       <label>Country From</label>
-                       <p>{{ convert_form.country_from }}</p>
+                       <p>{{ form.country_from }}</p>
                        <label>Country To</label>
-                       <p>{{ convert_form.country_to }}</p>
-                       <p>{{ convert_form.amount }}</p>
+                       <p>{{ form.country_to }}</p>
+                       <p>{{ form.amount }}</p>
                       <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="submit" type="submit">Convert</button>
               </form>
             </div>

@@ -11,30 +11,8 @@ from django.core.mail import send_mail
 
 def index(request):
 	template_name='home.html'
-	convert_form = ConvertForm(request.POST or None)
-	if(request.method=='POST'):
-		if 'submit' in request.POST:
-			if(convert_form.is_valid()):
-				convert = True;
-				amount = convert_form.cleaned_data['amount']
-				from_ = convert_form.cleaned_data['country_from']
-				to_ = convert_form.cleaned_data['country_to']
-				if (from_ == to_):
-					query_amount_to = Currency.objects.get(country_from = from_)
-					currency_from = query_amount_to.country_from.country_currency
-					currency_to = query_amount_to.country_from.country_currency
-					converted_amount = amount * 1
-				else:
-					query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
-					currency_from = query_amount_to.country_from.country_currency
-					currency_to = query_amount_to.country_to.country_currency
-					converted_amount = query_amount_to.amount_to * amount
-
-		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
-		convert_form = ConvertForm(initial=default_data)
+	form = ConversionForm(request.POST)
 	return render(request, template_name, locals())
-
-
 
 @login_required(login_url=('login'))
 def AdminView(request):
@@ -50,27 +28,15 @@ def AdminView(request):
 	return render(request, template, locals())
 
 @login_required(login_url=('login'))
-def AddCountryView(request):
+def addCountry(request):
 	template = 'forms.html'
-	country_form = CountryForm(request.POST or None, request.FILES)
+	form = CountryForm(request.POST or None, request.FILES)
 	if(request.method =="POST"):
-		if(country_form.is_valid()):
-			country_form.save()
+		if(form.is_valid()):
+			form.save()
 			return redirect('admin')
-	country_form = CountryForm()
+	form = CountryForm()
 	return render(request, template, locals())
-
-@login_required(login_url=('login'))
-def AddCurrencyView(request):
-	template = 'forms.html'
-	currency_form = CurencyForm(request.POST or None, request.FILES)
-	if(request.method =="POST"):
-		if(currency_form.is_valid()):
-			currency_form.save()
-			return redirect('admin')
-	currency_form = CurencyForm()
-	return render(request, template, locals())
-
 
 def disconnect(request):
 	logout(request)
@@ -126,101 +92,31 @@ class Register(View):
 		register_form = RegisterForm()
 		return render(request, self.template_name, locals())
 
-
-
 @login_required(login_url='/login/')
-def delete(request, currency_id):
-	curency = Currency.objects.get(id=currency_id)
-	curency.delete()
-	return redirect('admin')
-
-
-@login_required(login_url='/login/')
-def update(request, currency_id):
-	curency = Currency.objects.get(id=currency_id)
-
-	update_currency_form = CurencyForm(request.POST,  instance = curency)
-	if(request.method == 'POST'):
-		if(update_currency_form.is_valid()):
-			update_currency_form.save()
-			return redirect('admin')
-	update_currency_form = CurencyForm(instance=curency)
-	return render(request, "forms.html", locals())
-
-@login_required(login_url='/login/')
-def delete_c(request, country_id):
-	country = Country.objects.get(id=country_id)
-	country.delete()
-	return redirect('admin')
-
-
-@login_required(login_url='/login/')
-def update_c(request, country_id):
+def update(request, country_id):
 	country = Country.objects.get(id=country_id)
 
-	update_country_form = CountryForm(request.POST,  instance = country)
+	form = CurencyForm(request.POST,  instance=country)
 	if(request.method == 'POST'):
-		if(update_country_form.is_valid()):
-			update_country_form.save()
+		if(form.is_valid()):
+			form.save()
 			return redirect('admin')
-	update_country_form = CountryForm(instance=country)
+	form = CurencyForm(instance=curency)
 	return render(request, "forms.html", locals())
-
 
 def about(request):
-	convert_form = ConvertForm(request.POST)
-	if(request.method=='POST'):
-		if 'submit' in request.POST:
-			if(convert_form.is_valid()):
-				convert = True;
-				amount = convert_form.cleaned_data['amount']
-				from_ = convert_form.cleaned_data['country_from']
-				to_ = convert_form.cleaned_data['country_to']
-				if (from_ == to_):
-					query_amount_to = Currency.objects.get(country_from = from_)
-					currency_from = query_amount_to.country_from.country_currency
-					currency_to = query_amount_to.country_from.country_currency
-					converted_amount = amount * 1
-				else:
-					query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
-					currency_from = query_amount_to.country_from.country_currency
-					currency_to = query_amount_to.country_to.country_currency
-					converted_amount = query_amount_to.amount_to * amount
-
-		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
-		convert_form = ConvertForm(initial=default_data)
+	form = ConversionForm(request.POST)
 	return render(request, 'about.html', locals())
 
 def contact(request):
-	convert_form = ConvertForm(request.POST)
-	if(request.method=='POST'):
-		if 'submit' in request.POST:
-			if(convert_form.is_valid()):
-				convert = True;
-				amount = convert_form.cleaned_data['amount']
-				from_ = convert_form.cleaned_data['country_from']
-				to_ = convert_form.cleaned_data['country_to']
-				if (from_ == to_):
-					query_amount_to = Currency.objects.get(country_from = from_)
-					currency_from = query_amount_to.country_from.country_currency
-					currency_to = query_amount_to.country_from.country_currency
-					converted_amount = amount * 1
-				else:
-					query_amount_to = Currency.objects.get(country_from = from_, country_to=to_)
-					currency_from = query_amount_to.country_from.country_currency
-					currency_to = query_amount_to.country_to.country_currency
-					converted_amount = query_amount_to.amount_to * amount
-
-		default_data = {'country_from':convert_form.cleaned_data['country_from'],'country_to':convert_form.cleaned_data['country_to'],'amount':convert_form.cleaned_data['amount']}
-		convert_form = ConvertForm(initial=default_data)
-
-	email_form = ContactForm(request.POST)
+	form = ConversionForm(request.POST)
+	form2 = ContactForm(request.POST)
 	if(request.method == 'POST'):
 		if 'send' in request.POST:
-			if(email_form.is_valid()):
-				subject = email_form.cleaned_data['subject']
-				message = email_form.cleaned_data['message']
-				from_ = email_form.cleaned_data['from_']
+			if(form2.is_valid()):
+				subject = form2.cleaned_data['subject']
+				message = form2.cleaned_data['message']
+				from_ = form2.cleaned_data['from_']
 				to_ = 'cconverter@gmail.com'
 				send_mail(
 				    subject,
