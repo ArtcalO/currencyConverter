@@ -70,15 +70,19 @@ class ConversionForm(forms.Form):
         queryset = Country.objects.all())
 
 	amount = forms.FloatField(widget=forms.NumberInput(
-			attrs={'placeholder':'Amount ','class':'form-control', "id":"amount"}),
+			attrs={'placeholder':'Amount ','class':'form-control'}),
 		label='Amount')
 
 	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+		super(ConversionForm, self).__init__(*args, **kwargs)
 		countries = Country.objects.all()
 		countries = [(i.usd_value, i.name) for i in countries]
-		self.fields['country_from'] = forms.ChoiceField(choices=countries)
-		self.fields['country_to'] = forms.ChoiceField(choices=countries)
+		self.fields['country_from'] = forms.ChoiceField(
+	        widget = forms.Select(attrs = {'class': 'form-control'}),
+	        label = 'Country From', choices = countries)
+		self.fields['country_to'] = forms.ChoiceField(
+	        widget = forms.Select(attrs = {'class': 'form-control'}),
+	        label = 'Country To', choices = countries)
 
 class ContactForm(forms.Form):
 	subject = forms.CharField(
