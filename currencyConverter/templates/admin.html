@@ -25,13 +25,9 @@
 	          <div class="card-body m-auto">
 	              <form method="post" action=".">
 	              	{% csrf_token %}
-	              	<button type="submit" name="addCountry"  class="btn btn-outline-warning"> 
-                             Add Countries
-                      </button>
-
-                        <button type="submit" name="addCurrency" class="btn btn-outline-success">
+	              	<button type="submit" name="addCurrency" class="btn btn-outline-success">
                             Set Occurency
-                        </button>
+                    </button>
 	              </form>
 	          </div>
 	        </div>
@@ -39,10 +35,10 @@
 	    </div>
 </div>
 
-<div class="mt-5">
-<div class="table-responsive col-md-6" style="float:left">
-<h2 class="sub-header">List Currency</h2>
-            <table class="table table-striped">
+<div class="container">
+        <div class="table-responsive table-dark p-3">
+          <h2 class="sub-header text-white">List Currency</h2>
+            <table class="table table-striped table-dark table-hover">
               <thead>
               	<tr>
                     <th >
@@ -51,71 +47,33 @@
                             <label class="form-check-label">Id</label>
                         </div>
                     </th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Ocurency</th>
+                    <th>Name</th>
+                    <th>Currency</th>
+                    <th>USD Value</th>
                     <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for currency in currencies %}
-	                <tr>
-	                    <td class="col-md-1">
-	                        <div class="form-check">
-	                            <input type="checkbox" class="form-check-input">
-	                            <label class="form-check-label">{{ currency.id }}</label>
-	                        </div>
-	                    </td>
-	                    <td >{{ currency.country_from }}</td>
-	                    <td >{{ currency.country_to }}</td>
-	                    <td >{{ currency.amount_to }}</td>
-	                    <td >
-	                        <a type="button" href="{% url 'update' currency.id %}" class="btn btn-primary btn-sm">Update</a>
-	                        <a type="button"  href="{% url 'delete' currency.id %}" class="btn btn-danger btn-sm">Delete</a>
-	                    </td>
-	                </tr>
-	               {% endfor %} 
-              </tbody>
-            </table>
-          
-</div>
-
-<div class="table-responsive col-md-6" >
-          <h2 class="sub-header">List Countries</h2>
-            <table class="table table-striped">
-              <thead>
-              	<tr>
-                    <th >
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input checkAll">
-                            <label class="form-check-label">Id</label>
-                        </div>
-                    </th>
-                    <th >Name</th>
-                    <th >Currency</th>
-                    <th >Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {% for country in countries %}
 	                <tr>
-	                    <td >
+	                    <td class="col-md-1">
 	                        <div class="form-check">
 	                            <input type="checkbox" class="form-check-input">
 	                            <label class="form-check-label">{{ country.id }}</label>
 	                        </div>
 	                    </td>
 	                    <td >{{ country.name }}</td>
-	                    <td >{{ country.country_currency }}</td>
-	                    <td>
-	                        <a type="button"  href="{% url 'update_c' country.id %}" class="btn btn-primary btn-sm">Update</a>
-	                        <a type="button" href="{% url 'delete_c' country.id %}" class="btn btn-danger btn-sm">Delete</a>
+	                    <td >{{ country.currency }}</td>
+	                    <td >{{ country.usd_value }}</td>
+	                    <td >
+	                        <a type="button" href="{% url 'update' country.id %}" class="btn btn-primary btn-sm">Update</a>
 	                    </td>
 	                </tr>
 	               {% endfor %} 
               </tbody>
             </table>
-</div>
+          
+        </div>
 </div>
   
 	<div class="section mt-2" >
@@ -125,10 +83,6 @@
 	          <div class="card-body m-auto">
 	              <form method="post" action=".">
 	              	{% csrf_token %}
-	              	<button type="submit" name="addCountry"  class="btn btn-outline-warning"> 
-                             Add Countries
-                      </button>
-
                         <button type="submit" name="addCurrency" class="btn btn-outline-success">
                             Set Occurency
                         </button>

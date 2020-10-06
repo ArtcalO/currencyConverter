@@ -45,7 +45,7 @@ class CountryForm(forms.ModelForm):
 		)
 	currency = forms.CharField( widget=forms.TextInput(
 		attrs={'placeholder':'Currency','class':'form-control'}),
-		label='Country Currency'
+		label='Country Code'
 		)
 	usd_value = forms.FloatField(widget=forms.TextInput(
 			attrs={'placeholder':'Country currency usd value','class':'form-control'}),
