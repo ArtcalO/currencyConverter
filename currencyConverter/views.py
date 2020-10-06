@@ -16,19 +16,15 @@ def index(request):
 
 @login_required(login_url=('login'))
 def AdminView(request):
-	currencies = Currency.objects.all()
 	template = 'admin.html'
 	countries = Country.objects.all()
-	if 'addCountry' in request.POST:
-		return redirect('addCountry')
-
 	if 'addCurrency' in request.POST:
-		return redirect('addCurency')
+		return redirect('addCurrency')
 
 	return render(request, template, locals())
 
 @login_required(login_url=('login'))
-def addCountry(request):
+def addCurrency(request):
 	template = 'forms.html'
 	form = CountryForm(request.POST or None, request.FILES)
 	if(request.method =="POST"):
@@ -96,12 +92,12 @@ class Register(View):
 def update(request, country_id):
 	country = Country.objects.get(id=country_id)
 
-	form = CurencyForm(request.POST,  instance=country)
+	form = CountryForm(request.POST,  instance=country)
 	if(request.method == 'POST'):
 		if(form.is_valid()):
 			form.save()
 			return redirect('admin')
-	form = CurencyForm(instance=curency)
+	form = CountryForm(instance=country)
 	return render(request, "forms.html", locals())
 
 def about(request):
