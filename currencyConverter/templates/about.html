@@ -1,7 +1,8 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block titre %}<title>About | Currency Converter</title>{% endblock %}
-
+	
+	{% block banner %}
 	<!-- Page top Section end -->
 	<section class="page-top-section set-bg" data-setbg=" {% static 'img/page-top-bg/1.jpg' %} ">
 		<div class="container">
@@ -13,91 +14,46 @@
 		</div>
 	</section>
 	<!-- Page top Section end -->
+	{% endblock banner %}
+
 	{% block content %}
-		
-	
 	<!-- About Section end -->
 	<section class="about-section spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-5">
-					<img src=" {% static 'img/about-img.jpg' %} " alt="">
-				</div>
 				<div class="col-lg-7">
 					<div class="about-text">
 						<h2>A team to help you</h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl.</p>
-						<a href="#" class="site-btn">Find out more</a>
+						<a href="#" class="site-btn mb-2">Find out more</a>
 					</div>
+				</div>
+				<div class="col-lg-5">
+					
+
+					<form class="hero-form " method="post" enctype="multipart/form-data" action="." id="form">
+
+								{% csrf_token %}
+		                      	{{ form.as_p }}
+
+								<div class="alert alert-info show" role="alert">
+								  <strong  >Amount :  <span id="input"></span></strong><br>
+								  <strong>Taux de transfert : 10% </strong> <br>
+								  <strong class="badge badge-success badge-customized">Output :  <span id="demo" ></span></strong><br> 
+								</div>
+								<button class="site-btn" name="submit" type="submit" > <i class="fa fa-calculator"></i> Calculate</button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- About Section end -->
 
-	<!-- Review Section end -->
-	<section class="review-section spad">
-		<div class="container">
-			<div class="text-center text-white mb-5 pb-2">
-				<h2>What Our Clients Say</h2>
-			</div>
-			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="review-item">
-						<div class="rating">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<p>Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia.</p>
-						<h6>Maria Smith, <span>25 min ago</span></h6>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="review-item">
-						<div class="rating">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<p>Sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia.</p>
-						<h6>Marta Black, <span>25 min ago</span></h6>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="review-item">
-						<div class="rating">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse po-tenti. Ut gravida mattis magna, non varius lorem sodales nec. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-						<h6>Carl Brown, <span>25 min ago</span></h6>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="review-item">
-						<div class="rating">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<p>Per conubia nostra, per inceptos hime-naeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec.</p>
-						<h6>Paul David, <span>25 min ago</span></h6>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Review Section end -->
 
 {% endblock content %}
 	
+{%  block why_us %}
+{% endblock %}
+
+{% block find_more %}
+{% endblock %}

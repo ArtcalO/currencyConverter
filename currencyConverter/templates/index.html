@@ -56,6 +56,10 @@
 
 	{% endblock header %}
 
+	{% block banner %}
+		
+	{% endblock banner %}
+
 	{% block content %}
 
 	<!-- Hero Section end -->
@@ -87,9 +91,9 @@
                       	{{ form.as_p }}
 
 						<div class="alert alert-info show" role="alert">
-						  <strong  >Amount :  <span id="input"></span></strong> 
-						  <strong>Taux de transfert : 10% </strong> 
-						  <strong class="badge badge-success badge-customized"> <span id="demo" ></span> </strong> 
+						  <strong  >Amount :  <span id="input"></span></strong><br>
+						  <strong>Taux de transfert : 10% </strong> <br>
+						  <strong class="badge badge-success badge-customized">Output :  <span id="demo" ></span></strong><br> 
 						</div>
 						<button class="site-btn" name="submit" type="submit" > <i class="fa fa-calculator"></i> Calculate</button>
 					</form>
@@ -105,6 +109,8 @@
 	<!-- Hero Section end -->
 
 	{% endblock content %}
+
+	{% block why_us %}
 
 	<!-- Why Section end -->
 	<section class="why-section spad">
@@ -153,8 +159,9 @@
 		</div>
 	</section>
 	<!-- Why Section end -->
+{% endblock why_us %}
 
-
+{% block find_more %}
 	<!-- CTA Section end -->
 	<section class="cta-section set-bg" data-setbg=" {% static 'img/cta-bg.jpg' %} ">
 		<div class="container">
@@ -164,6 +171,7 @@
 		</div>
 	</section>
 	<!-- CTA Section end -->
+{% endblock find_more %}
 
 	<!-- Footer Section -->
 	<footer class="footer-section">
@@ -191,17 +199,13 @@
 		  $("#id_amount").keyup(function (event) {
 		    var from = parseFloat($("#id_country_from").val());
 		    var to = parseFloat($("#id_country_to").val());
+		    var x = parseFloat($("#id_amount").val());
 		    var new_amount = parseFloat($(this).val())*from/to
 		    $("#demo").text(new_amount.toFixed(2));
+		    $("#input").text(x);
 		  });
 		});
     
 </script>
-
-	<script>
-	function myFunction() {
-    var x = document.getElementById("id_amount").value;
-    document.getElementById("input").innerHTML = x;
-  }</script>
 	</body>
 </html>

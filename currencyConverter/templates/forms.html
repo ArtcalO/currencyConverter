@@ -1,7 +1,23 @@
 {% extends 'index.html' %}
+{% load static %}
+
+{% block banner %}
+<!-- Page top Section end -->
+    <section class="page-top-section set-bg" data-setbg=" {% static 'img/page-top-bg/1.jpg' %} ">
+        <div class="container">
+            <h2>Forms</h2>
+            <nav class="site-breadcrumb">
+                <a class="sb-item" href="#">Home</a>
+                <span class="sb-item active">Forms</span>
+            </nav>
+        </div>
+    </section>
+    <!-- Page top Section end -->
+{% endblock %}
+
 {% block content %}
 {% if form %}
-    <div class="section contact_form">
+    <section class="form-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
@@ -18,10 +34,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endif %}
 {% if form2 %}
-    <div class="section contact_form">
+    <section class="form-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
@@ -38,10 +54,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endif %}
+
+
 {% if connexion_form %}
-    <div class="section contact_form">
+    <section class="form-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
@@ -58,10 +76,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endif %}
+
+
 {% if register_form %}
-    <div class="section contact_form ">
+    <section class="form-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
@@ -78,6 +98,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endif %}
+
+{% endblock %}
+
+{%  block why_us %}
+{% endblock %}
+
+{% block find_more %}
 {% endblock %}

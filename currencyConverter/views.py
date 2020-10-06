@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 
 
 def index(request):
-	template_name='home.html'
+	template_name='index.html'
 	form = ConversionForm(request.POST)
 	return render(request, template_name, locals())
 
