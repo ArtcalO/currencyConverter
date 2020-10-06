@@ -1,72 +1,66 @@
 {% extends 'index.html' %}
 {% load static %}
-{% block titre %}<title>Contact | Currency Converter</title>{% endblock %}
+{% block titre %}<title>About | Currency Converter</title>{% endblock %}
 
-{% block banner %}
-<div class="section inner_page_banner" style="background-image:url({% static 'new/images/home.png' %})">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="banner_title">
-                    <h3>Contact</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block left_side %}
-    <div class="col-md-6 layout_padding">
-        <div class="full paddding_left_15">
-            <div class="heading_main text_align_left">
-               <h2><span class="theme_color">Contact</span></h2>    
-            </div>
-        </div>
-        <div class="full paddding_left_15">
-              <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
-                      {% csrf_token %}
-                       <p>{{ form2.as_p }}</p>
-                      <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="send" type="submit">Send</button>
-              </form>
-            </div>
-    </div>
-    {% endblock %}
-
-{% block convert %}
-
-      <div class="col-md-6 layout_padding mt-0" style="background: #2a2a2a;">
-          <div class="full paddding_left_15">
-              <div class="heading_main text_align_left">
-              {% if not convert %}
-                <h2><span class="theme_color" >Input : <span id="demo"></span></h2>
-              {% endif %}
-
-              {% if convert %}
-                <button class="btn btn-lg btn-outline-light btn-block " name="submit" type="submit">Output : {{ amount }} {{ currency_from }} = {{ converted_amount }} {{ currency_to }}</button>
-              {% endif %}
-              </div>
-          </div>
-          <div class="full paddding_left_15">
-              <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
-                      {% csrf_token %}
-                      <label>Country From</label>
-                       <p>{{ form.country_from }}</p>
-                       <label>Country To</label>
-                       <p>{{ form.country_to }}</p>
-                       <p>{{ form.amount }}</p>
-                      <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="submit" type="submit">Convert</button>
-              </form>
-            </div>
-        </div>
-  
-<script type="text/javascript">
-  function myFunction() {
-    var x = document.getElementById("amount").value;
-    document.getElementById("demo").innerHTML = x;
-  }
-</script>
-</script>
-
-{% endblock %}
- 
+	<!-- Page top Section end -->
+	<section class="page-top-section set-bg" data-setbg="{% static 'img/page-top-bg/4.jpg' %} ">
+		<div class="container">
+			<h2>Contact</h2>
+			<nav class="site-breadcrumb">
+				<a class="sb-item" href="#">Home</a>
+				<span class="sb-item active">Contact</span>
+			</nav>
+		</div>
+	</section>
+	<!-- Page top Section end -->
+	{% block content %}
+	<!-- Contact Section end -->
+	<section class="contact-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="contact-text">
+						<h2>Get in touch</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hime-naeos. Suspendisse potenti. </p>
+						<ul>
+							<li><i class="flaticon-032-placeholder"></i>1525  Loans Lane, Los Angeles, CA</li>
+							<li><i class="flaticon-029-telephone-1"></i>+1 (603)535-4592</li>
+							<li><i class="flaticon-025-arroba"></i>hello@youremail.com</li>
+							<li><i class="flaticon-038-wall-clock"></i>Everyday: 06:00 -22:00</li>
+						</ul>
+						<div class="social-links">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-instagram"></i></a>
+							<a href="#"><i class="fa fa-linkedin"></i></a>
+							<a href="#"><i class="fa fa-pinterest"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-youtube-play"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<form class="contact-form">
+						<div class="row">
+							<div class="col-md-6">
+								<input type="text" placeholder="Your Name">
+							</div>
+							<div class="col-md-6">
+								<input type="text" placeholder="Your E-mail">
+							</div>
+							<div class="col-md-12">
+								<input type="text" placeholder="Subject">
+								<textarea placeholder="Your Message"></textarea>
+								<button class="site-btn">send message</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10784.188505644011!2d19.053119335158936!3d47.48899529453826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1543907528304" style="border:0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</section>
+	<!-- Contact Section end -->
+{% endblock content %}
+	

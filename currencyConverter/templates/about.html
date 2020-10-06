@@ -2,61 +2,102 @@
 {% load static %}
 {% block titre %}<title>About | Currency Converter</title>{% endblock %}
 
-  {% block banner %}
-    <div class="section inner_page_banner" style="background-image:url({% static 'new/images/home.png' %})">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="banner_title">
-                        <h3>About us</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Banner -->
-  {% endblock %}
+	<!-- Page top Section end -->
+	<section class="page-top-section set-bg" data-setbg=" {% static 'img/page-top-bg/1.jpg' %} ">
+		<div class="container">
+			<h2>About us</h2>
+			<nav class="site-breadcrumb">
+				<a class="sb-item" href="#">Home</a>
+				<span class="sb-item active">About us</span>
+			</nav>
+		</div>
+	</section>
+	<!-- Page top Section end -->
+	{% block content %}
+		
+	
+	<!-- About Section end -->
+	<section class="about-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<img src=" {% static 'img/about-img.jpg' %} " alt="">
+				</div>
+				<div class="col-lg-7">
+					<div class="about-text">
+						<h2>A team to help you</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl.</p>
+						<a href="#" class="site-btn">Find out more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- About Section end -->
 
+	<!-- Review Section end -->
+	<section class="review-section spad">
+		<div class="container">
+			<div class="text-center text-white mb-5 pb-2">
+				<h2>What Our Clients Say</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="review-item">
+						<div class="rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia.</p>
+						<h6>Maria Smith, <span>25 min ago</span></h6>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="review-item">
+						<div class="rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<p>Sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia.</p>
+						<h6>Marta Black, <span>25 min ago</span></h6>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="review-item">
+						<div class="rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse po-tenti. Ut gravida mattis magna, non varius lorem sodales nec. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+						<h6>Carl Brown, <span>25 min ago</span></h6>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="review-item">
+						<div class="rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<p>Per conubia nostra, per inceptos hime-naeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec.</p>
+						<h6>Paul David, <span>25 min ago</span></h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Review Section end -->
 
-{% block left_side %}
-  <div class="col-md-6 layout_padding">
-      <div class="full paddding_left_15">
-          <div class="heading_main text_align_left">
-             <h2><span class="theme_color">About Us</span></h2>    
-          </div>
-      </div>
-      <div class="full paddding_left_15">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-      </div>
-      
-  </div>
-  {% endblock %}
-
-{% block convert %}
-
-      <div class="col-md-6 layout_padding mt-0" style="background: #2a2a2a;">
-          <div class="full paddding_left_15">
-              <div class="heading_main text_align_left">
-              {% if not convert %}
-                <h2><span class="theme_color" >Input : <span id="demo"></span></h2>
-              {% endif %}
-
-              {% if convert %}
-                <button class="btn btn-lg btn-outline-light btn-block " name="submit" type="submit">Output : {{ amount }} {{ currency_from }} = {{ converted_amount }} {{ currency_to }}</button>
-              {% endif %}
-              </div>
-          </div>
-          <div class="full paddding_left_15">
-              <form method="post" enctype="multipart/form-data" action="." class="form-signin" id="form">
-                      {% csrf_token %}
-                      <label>Country From</label>
-                       <p>{{ form.country_from }}</p>
-                       <label>Country To</label>
-                       <p>{{ form.country_to }}</p>
-                       <p>{{ form.amount }}</p>
-                      <button class="btn btn-lg btn-outline-warning btn-block text-uppercase theme_color" name="submit" type="submit">Convert</button>
-              </form>
-            </div>
-        </div>
-{% endblock %}
- 
+{% endblock content %}
+	
