@@ -34,14 +34,18 @@
 					<form class="hero-form " method="post" enctype="multipart/form-data" action="." id="form">
 
 								{% csrf_token %}
-		                      	{{ form.as_p }}
+		                      	{% for field in form %}
+		                      		<div class="form-group">
+		                      		<label for="to" class="text-white">{{ field.label }}</label>
+		                      		{{ field }}
+								 </div>
+		                      	{% endfor %}
 
 								<div class="alert alert-info show" role="alert">
 								  <strong  >Amount :  <span id="input"></span></strong><br>
-								  <strong>Taux de transfert : 10% </strong> <br>
+								  <strong>Taux de transfert : <span id="taux" >{{ form.trans_percent.trans_percent }}</span> % </strong> <br>
 								  <strong class="badge badge-success badge-customized">Output :  <span id="demo" ></span></strong><br> 
 								</div>
-								<button class="site-btn" name="submit" type="submit" > <i class="fa fa-calculator"></i> Calculate</button>
 					</form>
 				</div>
 			</div>
