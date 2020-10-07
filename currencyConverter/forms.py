@@ -1,6 +1,15 @@
 from .models import *
 from django import forms
 
+def getValue(str_value):
+	if('/' in str_value):
+		splited_string = str_value.split('/')
+		return float(splited_string[0])/float(splited_string[1])
+	else:
+		return float(str_value)
+
+	
+
 class ConnexionForm(forms.Form):
 	username = forms.CharField(
 		widget=forms.TextInput(
@@ -47,7 +56,7 @@ class CountryForm(forms.ModelForm):
 		attrs={'placeholder':'Currency','class':'form-control'}),
 		label='Country Code'
 		)
-	usd_value = forms.FloatField(widget=forms.TextInput(
+	usd_value = forms.CharField(widget=forms.TextInput(
 			attrs={'placeholder':'Country currency usd value','class':'form-control'}),
 		label='USD Value'
 		)
@@ -73,16 +82,19 @@ class ConversionForm(forms.Form):
 			attrs={'placeholder':'Amount ','class':'form-control'}),
 		label='Amount')
 
+	trans_percent = TransactionPercent.objects.get(id=1)
+
 	def __init__(self, *args, **kwargs):
 		super(ConversionForm, self).__init__(*args, **kwargs)
 		countries = Country.objects.all()
-		countries = [(i.usd_value, i.name) for i in countries]
+		countries = [(getValue(i.usd_value), i.name) for i in countries]
 		self.fields['country_from'] = forms.ChoiceField(
 	        widget = forms.Select(attrs = {'class': 'form-control'}),
 	        label = 'Country From', choices = countries)
 		self.fields['country_to'] = forms.ChoiceField(
 	        widget = forms.Select(attrs = {'class': 'form-control'}),
 	        label = 'Country To', choices = countries)
+
 
 class ContactForm(forms.Form):
 	subject = forms.CharField(
