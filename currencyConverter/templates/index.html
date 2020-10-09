@@ -199,20 +199,23 @@
 	<script src=" {% static 'js/jquery-ui.min.js' %}"></script>
 	<script src=" {% static 'js/main.js' %}"></script>
 
-	<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			var taux = parseFloat(document.getElementById('taux').innerHTML);
-		  $("#id_amount").keyup(function (event) {
-		    var from = parseFloat($("#id_country_from").val());
-		    var to = parseFloat($("#id_country_to").val());
-		    var x = parseFloat($("#id_amount").val());
-		    var new_amount = parseFloat($(this).val())*from/to;
-		    var computed_amount = new_amount + (new_amount*taux/100);
-		    $("#demo").text(computed_amount.toFixed(2));
-		    $("#input").text(x);
-		  });
-		});
-    
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    var taux = parseFloat(document.getElementById('taux').innerHTML);
+    $("#id_amount").keyup(function (event) {
+        var from = parseFloat($("#id_country_from").val());
+        var to = parseFloat($("#id_country_to").val());
+        var x = parseFloat($("#id_amount").val());
+        var new_amount = parseFloat($(this).val())*from/to;
+        var computed_amount = new_amount - (new_amount*taux/100);
+        $("#demo").text(separatedNumber(computed_amount.toFixed(2)));
+        $("#input").text(separatedNumber(x));
+    });
+
+    function separatedNumber(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+});    
 </script>
 	</body>
 </html>
