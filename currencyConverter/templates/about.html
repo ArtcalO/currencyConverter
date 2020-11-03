@@ -29,26 +29,32 @@
 					</div>
 				</div>
 				<div class="col-lg-5">
-					
 
 					<form class="hero-form " method="post" enctype="multipart/form-data" action="." id="form">
 
-								{% csrf_token %}
-		                      	{% for field in form %}
-		                      		<div class="form-group">
-		                      		<label for="to" class="text-white">{{ field.label }}</label>
-		                      		{{ field }}
-								 </div>
-		                      	{% endfor %}
+						{% csrf_token %}
+                      	{% for field in form %}
+                      		<div class="form-group">
+                      		<label for="to" class="text-white">{{ field.label }}</label>
+                      		{{ field }}
+						 </div>
+                      	{% endfor %}
+                      	
 
-								<div class="alert alert-info show" role="alert">
-								  <strong  >Amount :  <span id="input"></span></strong><br>
-								  <strong>Taux de transfert : <span id="taux" >{{ form.trans_percent.trans_percent }}</span> % </strong> <br>
-								  <strong class="badge badge-success badge-customized">Output :  <span id="demo" ></span></strong><br> 
-								</div>
+						<div class="alert alert-info show" role="alert">
+						  <strong  >Montant :  <span id="input"> </span> 
+						  						<span id="input_currency"> </span>
+						  </strong><br>
+						  <strong  >Taux :  1 <span id="c_from"></span> = 
+						  					<span id='value_to'></span> <span id="c_to" ></span>
+						  	</strong><br><hr>
+						  <strong class="badge badge-success badge-customized">Total :  
+						  					<span id="total" ></span>
+						  					<span id="total_currency" > </span>
+						  	</strong><br> 
+						</div>
 					</form>
 				</div>
-			</div>
 		</div>
 	</section>
 	<!-- About Section end -->
