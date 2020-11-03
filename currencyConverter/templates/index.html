@@ -42,12 +42,12 @@
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
-				<li><a href="{% url 'home' %}" class="active">Home</a></li>
+				<li><a href="{% url 'home' %}" class="active">Accueil</a></li>
 				<li><a href="{% url 'contact' %}">Contact</a></li>
-				<li><a href="{% url 'about' %}">About Us</a></li>
+				<li><a href="{% url 'about' %}">A propos de nous</a></li>
 			</ul>
 			<div class="header-right">
-				<a href="#" class="hr-btn"><i class="flaticon-029-telephone-1"></i>Call us now! </a>
+				<a href="#" class="hr-btn"><i class="flaticon-029-telephone-1"></i>Appelez-nous !</a>
 				<div class="hr-btn hr-btn-2">+257 61 460 068</div>
 			</div>
 		</nav>
@@ -72,10 +72,11 @@
 					<div class="hs-text">
 						<h2><strong><i class="fa fa-bell"></i>Instant Transfer</strong></h2>
 						<p>
-							Transferring money from one country to another has never been easy. High cost transfer fees, long waiting period. Receive and Send money easily and quicky with Instant Transfer.
+							Transférer de l'argent d'un pays à un autre n'a jamais été facile. Taux de transfert élevé, longue période d'attente.</br> Recevez et envoyez de l'argent facilement et rapidement avec <span class="color-primary">Instant Transfer.</span>
+
 						</p>
 
-						<a href="#" class="site-btn sb-dark-opac sb-big"><i class="fa fa-angle-double-right"></i> Find out More</a>
+						<a href="#" class="site-btn sb-dark-opac sb-big"><i class="fa fa-angle-double-right"></i> Voir Plus</a>
 
 					</div>
 				</div>
@@ -97,9 +98,16 @@
                       	
 
 						<div class="alert alert-info show" role="alert">
-						  <strong  >Amount :  <span id="input"></span></strong><br>
-						  <strong>Taux de transfert : <span id="taux" >{{ form.trans_percent.trans_percent }}</span> % </strong> <br>
-						  <strong class="badge badge-success badge-customized">Output :  <span id="demo" ></span></strong><br> 
+						  <strong  >Montant :  <span id="input"> </span> 
+						  						<span id="input_currency"> </span>
+						  </strong><br>
+						  <strong  >Taux :  1 <span id="c_from"></span> = 
+						  					<span id='value_to'></span> <span id="c_to" ></span>
+						  	</strong><br><hr>
+						  <strong class="badge badge-success badge-customized">Total :  
+						  					<span id="total" ></span>
+						  					<span id="total_currency" > </span>
+						  	</strong><br> 
 						</div>
 					</form>
 				</div>
@@ -200,22 +208,55 @@
 	<script src=" {% static 'js/main.js' %}"></script>
 
 <script type="text/javascript">
-jQuery(document).ready(function($) {
-    var taux = parseFloat(document.getElementById('taux').innerHTML);
-    $("#id_amount").keyup(function (event) {
-        var from = parseFloat($("#id_country_from").val());
-        var to = parseFloat($("#id_country_to").val());
-        var x = parseFloat($("#id_amount").val());
-        var new_amount = parseFloat($(this).val())*from/to;
-        var computed_amount = new_amount - (new_amount*taux/100);
-        $("#demo").text(separatedNumber(computed_amount.toFixed(2)));
-        $("#input").text(separatedNumber(x));
-    });
-
-    function separatedNumber(x) {
+	var c_from ='';
+		function separatedNumber(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
-});    
+    };
+		jQuery(document).ready(function($) {
+			function getChangedItemFrom(id){
+				var list = document.getElementById(id);
+				var data = list.options[list.selectedIndex].innerHTML;
+				return data.split(' ')[1];
+			};
+			function reset(){
+				$("#total").text('');
+			    $("#total_currency").text('');
+			    $("#input").text('');
+			    $("#input_currency").text('');
+			    $("#value_to").text('');
+			    $("#c_from").text('');
+			    $("#c_to").text('');
+			}
+			function actionDone(){
+				var form_id = 'id_country_from';
+				var to_id = 'id_country_to';
+				var c_from = getChangedItemFrom(form_id);
+				var c_to = getChangedItemFrom(to_id);
+				var from = parseFloat($("#id_country_from").val());
+			    var to = parseFloat($("#id_country_to").val());
+			    var x = parseFloat($("#id_amount").val());
+			    if(x){
+			    	var new_amount = parseFloat($(this).val())*from/to;
+				    $("#total").text(separatedNumber(new_amount.toFixed(2)));
+				    $("#total_currency").text(c_to);
+				    $("#input").text(separatedNumber(x));
+				    $("#input_currency").text(c_from);
+				    (from == to) ? $("#value_to").text('1') : $("#value_to").text(separatedNumber(to));
+				    $("#c_from").text(c_from);
+				    $("#c_to").text(c_to);
+			    }else{
+			    	reset();
+			    }
+			    
+
+			}
+			
+		  $("#id_amount").keyup(actionDone);
+		  $("#id_country_to").change(actionDone);
+		  $("#id_country_from").change(actionDone);
+		});
+
+    
 </script>
 	</body>
 </html>
