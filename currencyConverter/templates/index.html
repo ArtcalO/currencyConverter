@@ -38,7 +38,7 @@
 	
 	<header class="header-section">
 		<a href="/" class="site-logo">
-			<img src=" {% static 'img/logo--4.png' %} " alt="">
+			<img src=" {% static 'img/logo--5.png' %} " alt="">
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
@@ -63,7 +63,7 @@
 	{% block content %}
 
 	<!-- Hero Section end -->
-	<section class="hero-section" id="tarrif">
+		<section class="hero-section" id="tarrif">
 		<div class="container">
 			<div class="row">
 				{% block aside %}
@@ -72,13 +72,38 @@
 					<div class="hs-text">
 						<h2><strong><i class="fa fa-bell"></i>Instant Transfer</strong></h2>
 						<p>
-							Transférer de l'argent d'un pays à un autre n'a jamais été facile. Taux de transfert élevé, longue période d'attente.</br> Recevez et envoyez de l'argent facilement et rapidement avec <span class="color-primary">Instant Transfer.</span>
-
+							Transférer de l'argent d'un pays à un autre n'a jamais été facile surtout à cause du taux de transfert élevé et une longue période d'attente.</br> Recevez et envoyez de l'argent facilement et rapidement avec <span class="color-primary">Instant Transfer.</span>
 						</p>
 
-						<a href="#" class="site-btn sb-dark-opac sb-big"><i class="fa fa-angle-double-right"></i> Voir Plus</a>
 
+						<p>
+						  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#banques" aria-expanded="false" aria-controls="banques"><i class="fa fa-location-arrow"></i> Passer à l'action en choisissant la banque de votre choix</button>
+						</p>
+						<div class="row">
+						  <div class="col">
+						    <div class="collapse multi-collapse" id="banques">
+
+							<div class="list-group">
+
+								  <a href="https://www.rbcroyalbank.com/fr/" class="list-group-item list-group-item-action">
+								   Banque Royale du Canada (RBC)
+								  </a>
+								  <a href="https://www.cibc.com/fr/" class="list-group-item list-group-item-action">Banque Canadienne Impériale de Commerce (CIBC)</a>
+								  <a href="https://www.bmo.com/" class="list-group-item list-group-item-action">Banque de Montréal (BMO)</a>
+
+								  <a href="https://www.bnc.ca/" class="list-group-item list-group-item-action">Banque nationale du Canada (BNC)</a>
+
+								  <a href="https://www.banquelaurentienne.ca/fr/" class="list-group-item list-group-item-action">Banque Laurentienne du Canada (BLC)</a>
+
+								  <a href="https://www.td.com" class="list-group-item list-group-item-action">banque toronto-dominion (TD)</a>
+
+								  <a href="https://www.desjardins.com/" class="list-group-item list-group-item-action">banque des jardins canada</a>
+								</div>
+						    </div>
+						  </div>
+						</div>
 					</div>
+					
 				</div>
 				{% endblock aside %}
 
@@ -129,7 +154,7 @@
 	<section class="why-section spad">
 		<div class="container">
 			<div class="text-center mb-5 pb-4">
-				<h2>Why Choose us?</h2>
+				<h2>Pourqoui choisir <span class="color-primary">Instant Transfer?</span></h2>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
@@ -139,7 +164,7 @@
 						</div>
 						<div class="ib-text">
 							<h5>Instant Transfer</h5>
-							<p>Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua. </p>
+							<p>Avec nous, le transfert d'argent du Canada au Burundi est simple,rapide et facile. </p>
 						</div>
 					</div>
 				</div>
@@ -149,8 +174,8 @@
 							<i class="flaticon-036-customer-service"></i>
 						</div>
 						<div class="ib-text">
-							<h5>low cost transfer fees</h5>
-							<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per incep-tos himenaeos. Suspendisse potenti. Ut gravida mattis.</p>
+							<h5>Taux à faible coût</h5>
+							<p><span class="color-primary">Instant Transfer</span> offre un service de transfert efficace, et ce à un taux compétitif.</p>
 						</div>
 					</div>
 				</div>
@@ -160,14 +185,14 @@
 							<i class="flaticon-039-info"></i>
 						</div>
 						<div class="ib-text">
-							<h5>Available in many countries</h5>
-							<p>Conubia nostra, per inceptos himenae os. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci.</p>
+							<h5>Comment ça marche?</h5>
+							<p>c'est simple. Calculez le montant à transferer en  utilisant notre calculateur en ligne puis faites votre transfert via interac au numero ****</p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="text-center pt-3">
-				<a href="#tarrif" class="site-btn sb-big">Know our tarrif</a>
+				<a href="#tarrif" class="site-btn sb-big">Taux du jour</a>
 			</div>
 		</div>
 	</section>
@@ -178,9 +203,9 @@
 	<!-- CTA Section end -->
 	<section class="cta-section set-bg" data-setbg=" {% static 'img/cta-bg.jpg' %} ">
 		<div class="container">
-			<h2>Want to know more about <strong>Instant Transfer</strong>?</h2>
-			<h5>fint out more informations about our services</h5>
-			<a href="#" class="site-btn sb-dark sb-big">Find out More</a>
+			<h3>Voulez vous savoir plus sur <strong class="color-primary">Instant Transfer</strong>?</h3>
+			<h5>contactez nous pour plus d'informations</h5>
+			<a href="#" class="site-btn sb-dark sb-big"><i class="flaticon-029-telephone-1"></i> +257 61 460 068</a>
 		</div>
 	</section>
 	<!-- CTA Section end -->
@@ -192,7 +217,7 @@
 			<div class="text-center">
 				
 			<span class="text-white text-center text-footer">
-			Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <strong ><span class="text-danger">Instant</span> <span class="text-warning">Transfer</span> - Simple, Quick & Economic</strong>				
+			Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <strong ><span class="text-danger">Instant</span> <span class="text-warning">Transfer</span> - Simple, Rapide & Economique</strong>				
 			</span>
 			</div>
 		</div>
@@ -226,7 +251,7 @@
 			    $("#value_to").text('');
 			    $("#c_from").text('');
 			    $("#c_to").text('');
-			}
+			};
 			function actionDone(){
 				var form_id = 'id_country_from';
 				var to_id = 'id_country_to';
@@ -235,21 +260,21 @@
 				var from = parseFloat($("#id_country_from").val());
 			    var to = parseFloat($("#id_country_to").val());
 			    var x = parseFloat($("#id_amount").val());
+			    var xx = from*to;
 			    if(x){
 			    	var new_amount = parseFloat($(this).val())*from/to;
 				    $("#total").text(separatedNumber(new_amount.toFixed(2)));
 				    $("#total_currency").text(c_to);
 				    $("#input").text(separatedNumber(x));
 				    $("#input_currency").text(c_from);
-				    (from == to) ? $("#value_to").text('1') : $("#value_to").text(separatedNumber(to));
+				    (from == to) ? $("#value_to").text('1') : $("#value_to").text(separatedNumber(xx));
 				    $("#c_from").text(c_from);
 				    $("#c_to").text(c_to);
 			    }else{
 			    	reset();
 			    }
 			    
-
-			}
+			};
 			
 		  $("#id_amount").keyup(actionDone);
 		  $("#id_country_to").change(actionDone);
