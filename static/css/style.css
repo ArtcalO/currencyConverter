@@ -389,7 +389,6 @@ Header section
 .site-logo {
 	float: left;
 	display: inline-block;
-	padding: 33px 0;
 }
 
 .main-menu {
@@ -1518,5 +1517,9 @@ Contact Page
 
 .text-footer{
 	text-align: right;
+}
+
+.color-primary {
+	color: #f43f00;
 }
 
