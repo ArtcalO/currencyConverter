@@ -231,57 +231,7 @@
 	<script src=" {% static 'js/owl.carousel.min.js' %}"></script>
 	<script src=" {% static 'js/jquery-ui.min.js' %}"></script>
 	<script src=" {% static 'js/main.js' %}"></script>
-
-<script type="text/javascript">
-	var c_from ='';
-		function separatedNumber(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    };
-		jQuery(document).ready(function($) {
-			function getChangedItemFrom(id){
-				var list = document.getElementById(id);
-				var data = list.options[list.selectedIndex].innerHTML;
-				return data.split(' ')[1];
-			};
-			function reset(){
-				$("#total").text('');
-			    $("#total_currency").text('');
-			    $("#input").text('');
-			    $("#input_currency").text('');
-			    $("#value_to").text('');
-			    $("#c_from").text('');
-			    $("#c_to").text('');
-			};
-			function actionDone(){
-				var form_id = 'id_country_from';
-				var to_id = 'id_country_to';
-				var c_from = getChangedItemFrom(form_id);
-				var c_to = getChangedItemFrom(to_id);
-				var from = parseFloat($("#id_country_from").val());
-			    var to = parseFloat($("#id_country_to").val());
-			    var x = parseFloat($("#id_amount").val());
-			    var xx = from*to;
-			    if(x){
-			    	var new_amount = parseFloat($(this).val())*from/to;
-				    $("#total").text(separatedNumber(new_amount.toFixed(2)));
-				    $("#total_currency").text(c_to);
-				    $("#input").text(separatedNumber(x));
-				    $("#input_currency").text(c_from);
-				    (from == to) ? $("#value_to").text('1') : $("#value_to").text(separatedNumber(xx));
-				    $("#c_from").text(c_from);
-				    $("#c_to").text(c_to);
-			    }else{
-			    	reset();
-			    }
-			    
-			};
-			
-		  $("#id_amount").keyup(actionDone);
-		  $("#id_country_to").change(actionDone);
-		  $("#id_country_from").change(actionDone);
-		});
-
-    
-</script>
+	<script src="{% static 'js/instant_transfer.js' %}"></script>
+	
 	</body>
 </html>
