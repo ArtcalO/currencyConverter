@@ -1,14 +1,6 @@
 from .models import *
 from django import forms
 
-def getValue(str_value):
-	if('/' in str_value):
-		splited_string = str_value.split('/')
-		return float(splited_string[0])/float(splited_string[1])
-	else:
-		return float(str_value)
-
-	
 
 class ConnexionForm(forms.Form):
 	username = forms.CharField(
@@ -70,7 +62,7 @@ class ConversionForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		super(ConversionForm, self).__init__(*args, **kwargs)
 		countries = Country.objects.all()
-		countries = [(getValue(i.usd_value), i.name +' ('+ i.currency + ')') for i in countries]
+		countries = [(i.usd_value, i.name +' ('+ i.currency + ')') for i in countries]
 		self.fields['country_from'] = forms.ChoiceField(
 	        widget = forms.Select(attrs = {'class': 'form-control'}),
 	        label = 'Country From', choices = countries)
