@@ -27,13 +27,13 @@
 			};
 			function tauxValue(str_from, str_to){
 				if(str_from.includes('/') && str_to.includes('/')){
-					return parseFloat(str_to.split('/')[1])/parseFloat(str_from.split('/')[1]);
+					return (parseFloat(str_to.split('/')[1])/parseFloat(str_from.split('/')[1])).toFixed(4);
 				}
 				if(str_from.includes('/')){
 
-					return parseFloat(str_to)/parseFloat(str_from.split('/')[1]);
+					return (parseFloat(str_to)/parseFloat(str_from.split('/')[1])).toFixed(4);
 				}else{
-					return parseFloat(str_to.split('/')[1])/parseFloat(str_from);
+					return (parseFloat(str_to.split('/')[1])/parseFloat(str_from)).toFixed(4);
 				}
 
 			};
@@ -49,7 +49,7 @@
 			    var value_to = tauxValue($('#id_country_from').val(), $('#id_country_to').val());
 			    if(x){
 			    	var new_amount = parseFloat($(this).val())*from/to;
-				    $("#total").text(separatedNumber(new_amount.toFixed(2)));
+				    $("#total").text(separatedNumber(new_amount.toFixed(4)));
 				    $("#total_currency").text(c_to);
 				    $("#input").text(separatedNumber(x));
 				    $("#input_currency").text(c_from);
