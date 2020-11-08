@@ -65,13 +65,13 @@ class ConversionForm(forms.Form):
 		countries = [(i.usd_value, i.name +' ('+ i.currency + ')') for i in countries]
 		self.fields['country_from'] = forms.ChoiceField(
 	        widget = forms.Select(attrs = {'class': 'form-control'}),
-	        label = 'Country From', choices = countries)
+	        label = 'De la devise', choices = countries)
 		self.fields['country_to'] = forms.ChoiceField(
 	        widget = forms.Select(attrs = {'class': 'form-control'}),
-	        label = 'Country To', choices = countries)
+	        label = 'A la devise', choices = countries)
 		self.fields['amount'] = forms.FloatField(widget=forms.NumberInput(
-			attrs={'placeholder':'Amount ','class':'form-control'}),
-		label='Amount')
+			attrs={'placeholder':'Montant ','class':'form-control'}),
+		label='Montant')
 
 class ContactForm(forms.Form):
 	subject = forms.CharField(
