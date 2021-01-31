@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block banner %}
+    <section class="page-top-section set-bg" data-setbg=" {% static 'img/page-top-bg/1.jpg' %} ">
+        <div class="container">
+            <h2>Forms</h2>
+            <nav class="site-breadcrumb">
+                <a class="sb-item" href="#">Home</a>
+                <span class="sb-item active">Forms</span>
+            </nav>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    
+    {% if step1_form %}
+        <section class="form-section spad">
+            <div class="container">
+                <div class="row">
+                      <div class="col">
+                            <p>
+                              <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#banques" aria-expanded="false" aria-controls="banques"><i class="fa fa-location-arrow"></i> Passer à l'action en choisissant la banque de votre choix</button>
+                            </p>
+                        </div>
+                        <div class="col ">
+                          <button type="button" class="btn btn-primary btn-block ">Deja payer ? Etape suivante</button>
+                        </div>
+                </div>
+                <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="banques">
+
+                        <div class="list-group">
+                            <center><p>Email : <strong>king@hogi.bi</strong> copier</p></center>
+                              <a href="https://www.rbcroyalbank.com/fr/" class="list-group-item list-group-item-action">
+                               Banque Royale du Canada (RBC)
+                              </a>
+                              <a href="https://www.cibc.com/fr/" class="list-group-item list-group-item-action">Banque Canadienne Impériale de Commerce (CIBC)</a>
+                              <a href="https://www.bmo.com/" class="list-group-item list-group-item-action">Banque de Montréal (BMO)</a>
+
+                              <a href="https://www.bnc.ca/" class="list-group-item list-group-item-action">Banque nationale du Canada (BNC)</a>
+
+                              <a href="https://www.banquelaurentienne.ca/fr/" class="list-group-item list-group-item-action">Banque Laurentienne du Canada (BLC)</a>
+
+                              <a href="https://www.td.com" class="list-group-item list-group-item-action">banque toronto-dominion (TD)</a>
+
+                              <a href="https://www.desjardins.com/" class="list-group-item list-group-item-action">banque des jardins canada</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock %}
+
+{%  block why_us %}
+{% endblock %}
+
+{% block find_more %}
+{% endblock %}

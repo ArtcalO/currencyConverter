@@ -13,7 +13,13 @@ from django.core.mail import send_mail
 def index(request):
 	template_name='index.html'
 	form = ConversionForm(request.POST)
+	if "action" in request.POST:
+		return redirect(step1)
 	return render(request, template_name, locals())
+
+def step1(request):
+	step1_form = True
+	return render(request, 'steps_forms.html', locals())
 
 @login_required(login_url=('login'))
 def AdminView(request):

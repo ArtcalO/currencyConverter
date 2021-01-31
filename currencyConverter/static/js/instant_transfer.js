@@ -3,6 +3,13 @@
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
    		 };
 		jQuery(document).ready(function($) {
+
+			function displayBtn(){
+				let x = $('#id_amount').val()
+				x.length > 2 ? $('#userInfo').show() : ('#userInfo').hide()
+
+			};
+
 			function getChangedItemFrom(id){
 				var list = document.getElementById(id);
 				var data = list.options[list.selectedIndex].innerHTML;
@@ -47,6 +54,7 @@
 			    var to = getValue($("#id_country_to").val());
 			    var x = parseFloat($("#id_amount").val());
 			    var value_to = tauxValue($('#id_country_from').val(), $('#id_country_to').val());
+
 			    if(x){
 			    	var new_amount = parseFloat($(this).val())*from/to;
 				    $("#total").text(separatedNumber(new_amount.toFixed(4)));
@@ -63,6 +71,7 @@
 			};
 			
 		  $("#id_amount").keyup(actionDone);
+		  $("#id_amount").keyup(displayBtn);
 		  $("#id_country_to").change(actionDone);
 		  $("#id_country_from").change(actionDone);
 		});
