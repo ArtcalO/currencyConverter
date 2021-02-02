@@ -2,57 +2,114 @@
 {% load static %}
 
 {% block banner %}
-    <section class="page-top-section set-bg" data-setbg=" {% static 'img/page-top-bg/1.jpg' %} ">
-        <div class="container">
-            <h2>Forms</h2>
-            <nav class="site-breadcrumb">
-                <a class="sb-item" href="#">Home</a>
-                <span class="sb-item active">Forms</span>
-            </nav>
-        </div>
-    </section>
+    <div style="height:92px; border-bottom:1px solid black;">
+        
+    </div>
 {% endblock %}
 
 {% block content %}
     
-    {% if step1_form %}
-        <section class="form-section spad">
-            <div class="container">
-                <div class="row">
-                      <div class="col">
-                            <p>
-                              <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#banques" aria-expanded="false" aria-controls="banques"><i class="fa fa-location-arrow"></i> Passer à l'action en choisissant la banque de votre choix</button>
-                            </p>
-                        </div>
-                        <div class="col ">
-                          <button type="button" class="btn btn-primary btn-block ">Deja payer ? Etape suivante</button>
-                        </div>
-                </div>
-                <div class="row">
-                <div class="col">
-                    <div class="collapse multi-collapse" id="banques">
+    {% if choice %}
 
-                        <div class="list-group">
-                            <center><p>Email : <strong>king@hogi.bi</strong> copier</p></center>
-                              <a href="https://www.rbcroyalbank.com/fr/" class="list-group-item list-group-item-action">
-                               Banque Royale du Canada (RBC)
-                              </a>
-                              <a href="https://www.cibc.com/fr/" class="list-group-item list-group-item-action">Banque Canadienne Impériale de Commerce (CIBC)</a>
-                              <a href="https://www.bmo.com/" class="list-group-item list-group-item-action">Banque de Montréal (BMO)</a>
-
-                              <a href="https://www.bnc.ca/" class="list-group-item list-group-item-action">Banque nationale du Canada (BNC)</a>
-
-                              <a href="https://www.banquelaurentienne.ca/fr/" class="list-group-item list-group-item-action">Banque Laurentienne du Canada (BLC)</a>
-
-                              <a href="https://www.td.com" class="list-group-item list-group-item-action">banque toronto-dominion (TD)</a>
-
-                              <a href="https://www.desjardins.com/" class="list-group-item list-group-item-action">banque des jardins canada</a>
+            <section class="ftco-section form-section" >
+              <div class="container">
+                <div class="row justify-content-center mb-5 pb-3">
+                  <div class="col-md-7 heading-section ftco-animate text-center">
+                      
+                    <div class="card-body m-auto">
+                        <h5 class="card-title text-center my-5">Cliquez pour choisir</h5>
+                        <div class="row">
+                    
+                            <div class="col">
+                                <p>
+                                  <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#banques" aria-expanded="false" aria-controls="banques"><i class="fa fa-location-arrow"></i>Choisir une banque</button>
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <a href="{% url "step1" %}" class="btn btn-primary btn-block ">Deja payer ? Etape suivante</a>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="collapse multi-collapse" id="banques">
+
+                                    <div class="list-group">
+                                        <center><p>Email : <strong>king@hogi.bi</strong> copier</p></center>
+                                          <a href="https://www.rbcroyalbank.com/fr/" class="list-group-item list-group-item-action">
+                                           Banque Royale du Canada (RBC)
+                                          </a>
+                                          <a href="https://www.cibc.com/fr/" class="list-group-item list-group-item-action">Banque Canadienne Impériale de Commerce (CIBC)</a>
+                                          <a href="https://www.bmo.com/" class="list-group-item list-group-item-action">Banque de Montréal (BMO)</a>
+
+                                          <a href="https://www.bnc.ca/" class="list-group-item list-group-item-action">Banque nationale du Canada (BNC)</a>
+
+                                          <a href="https://www.banquelaurentienne.ca/fr/" class="list-group-item list-group-item-action">Banque Laurentienne du Canada (BLC)</a>
+
+                                          <a href="https://www.td.com" class="list-group-item list-group-item-action">banque toronto-dominion (TD)</a>
+
+                                          <a href="https://www.desjardins.com/" class="list-group-item list-group-item-action">banque des jardins canada</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      </div>
+
+                  </div>
                 </div>
+              </div>
+          </section>
+
+    {% endif %}
+
+    {% if step_form1 %}
+
+        <div class="container-fluid bg-secondary" >
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                  <div class="card-img-left d-none d-md-flex">
+                     <!-- Background image for card set in CSS! -->
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Etap1 : Vos Informations</h5>
+                    <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                      {% csrf_token %}
+                      {{ step_form1.as_p }}
+                      <input class="btn btn-lg btn-primary right"  value="Next" type="submit">
+                      
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      
+    {% endif %}
+
+    {% if step_form2 %}
+    
+        <div class="container-fluid bg-secondary" >
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Etape 2 : Information destinataire</h5>
+                    <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                      {% csrf_token %}
+                      {{ step_form2.as_p }}
+                      <button class="btn btn-lg btn-primary " type="submit">Next</button>
+                      
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
     {% endif %}
 
 {% endblock %}

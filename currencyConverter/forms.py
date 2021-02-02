@@ -95,3 +95,48 @@ class ContactForm(forms.Form):
 		label='Amount',
 		required=True)
 
+
+class StepForm1(forms.Form):
+	firstname = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'placeholder':'Nom ','class':'form-control'
+				}
+			), label='nom', required=False)
+	lastname = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'placeholder':'Prenom ','class':'form-control'
+				}
+			), label='prenom', required=False)
+	number = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'placeholder':'Prenom ','required':'false','class':'form-control'
+				}
+			), label='prenom', required=False)
+	email = forms.EmailField(
+		widget=forms.TextInput(
+			attrs={
+				'placeholder':'Adresse electronique ','class':'form-control'
+				}
+			), label='your email adress', required=False)
+
+class StepForm2(forms.Form):
+	firstname = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'placeholder':'Nom ','class':'form-control'
+				}
+			), label='Nom destinataire', required=False)
+	lastname = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'placeholder':'Prenom ','class':'form-control'
+				}
+			), label='Prenom destinataire', required=False)
+
+
+
+
+

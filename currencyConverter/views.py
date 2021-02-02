@@ -9,16 +9,25 @@ from django.contrib import messages
 from django.core.mail import send_mail
 
 
-
 def index(request):
 	template_name='index.html'
 	form = ConversionForm(request.POST)
 	if "action" in request.POST:
-		return redirect(step1)
+		return redirect(choice)
 	return render(request, template_name, locals())
 
+def choice(request):
+	choice = True
+	return render(request, 'steps_forms.html', locals())
+
 def step1(request):
-	step1_form = True
+	step_form1 = StepForm1(request.POST or None)
+	if step_form1.is_valid():
+		return redirect(step2)
+	return render(request, 'steps_forms.html', locals())
+
+def step2(request):
+	step_form2 = StepForm2(request.POST or None)
 	return render(request, 'steps_forms.html', locals())
 
 @login_required(login_url=('login'))
