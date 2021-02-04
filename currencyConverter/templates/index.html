@@ -45,6 +45,11 @@
 				<li><a href="{% url 'home' %}" class="active">Accueil</a></li>
 				<li><a href="{% url 'contact' %}">Contact</a></li>
 				<li><a href="{% url 'about' %}">A propos de nous</a></li>
+				{% if user.is_authenticated %}
+					<li><a href="{% url 'requests' %}">Demandes</a></li>
+					<li><a href="#">+ Utilisateurs</a></li>
+				{% endif %}
+				
 			</ul>
 			<div class="header-right">
 				<a href="#" class="hr-btn"><i class="flaticon-029-telephone-1"></i>Appelez-nous !</a>
