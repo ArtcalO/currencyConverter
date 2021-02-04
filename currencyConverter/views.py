@@ -16,6 +16,12 @@ def index(request):
 		return redirect(choice)
 	return render(request, template_name, locals())
 
+def requests(request):
+	
+	return render(request, 'requests.html', locals())
+
+
+
 def choice(request):
 	choice = True
 	return render(request, 'steps_forms.html', locals())
@@ -28,6 +34,12 @@ def step1(request):
 
 def step2(request):
 	step_form2 = StepForm2(request.POST or None)
+	if step_form2.is_valid():
+		return redirect(step3)
+	return render(request, 'steps_forms.html', locals())
+
+def step3(request):
+	choice2 = True
 	return render(request, 'steps_forms.html', locals())
 
 @login_required(login_url=('login'))
