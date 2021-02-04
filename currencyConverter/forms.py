@@ -135,6 +135,19 @@ class StepForm2(forms.Form):
 				'placeholder':'Prenom ','class':'form-control'
 				}
 			), label='Prenom destinataire', required=False)
+	email = forms.EmailField(
+		widget=forms.TextInput(
+			attrs={
+				'placeholder':'Email destinataire ','class':'form-control'
+				}
+			), label='Email destinataire', required=False)
+
+	number = forms.CharField(
+		widget=forms.NumberInput(
+			attrs={
+				'placeholder':'Te. destinataire ','class':'form-control'
+				}
+			), label='Tel. destinataire', required=False)
 
 
 
