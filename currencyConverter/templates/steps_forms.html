@@ -112,6 +112,177 @@
       
     {% endif %}
 
+    {% if choice2 %}
+
+        <div class="container-fluid bg-secondary" >
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                  <div class="card-img-left d-none d-md-flex">
+                     <!-- Background image for card set in CSS! -->
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Etap3 : Moyens de livraison</h5>
+                    <div class=" py-5 px-1 border">
+                      <center id="damForm">
+                          <div class="form-check-inline">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ecocashModal">
+                                EcoCash
+                              </button>
+                          </div>
+                          <div class="form-check-inline">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lumicashModal">
+                                LumiCash
+                              </button>
+                          </div>
+                          <br>
+                          <br>
+                          <div class="form-check-inline">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#livraisonModal">
+                                Livraison
+                              </button>
+                          </div>
+                          <div class="form-check-inline">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#compteModal">
+                                Compte
+                              </button>
+                          </div>
+                        </center>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--ECOCASH MODAL-->
+
+        <div class="modal" id="ecocashModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">ECOCASH</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                  <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                      <div class="form-group">
+                        <label for="eco">Numero Ecocash:</label>
+                        <input type="number" class="form-control" placeholder="Numero EcoCash" id="eco">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </form> 
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+        <!-- END ECOCASH MODAL -->
+
+        <!-- MODAL LUMICASH -->
+          <div class="modal" id="lumicashModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">LUMICASH</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                        <div class="form-group">
+                          <label for="eco">Numero Lumicash:</label>
+                          <input type="number" class="form-control" placeholder="Numero EcoCash" id="eco">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form> 
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        <!-- END MODAL LUMICASH -->
+
+        <!-- MODAL LIVRAISON -->
+          <div class="modal" id="livraisonModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Livraison</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                        <div class="form-group">
+                          <label for="num">Whatsapp/Tel :</label>
+                          <input type="number" class="form-control" placeholder="Tel., Whatsapp" id="num">
+                        </div>
+                        <div class="form-group">
+                          <label for="dest">Quartier, Zone, Commune</label>
+                          <input type="text" class="form-control" placeholder="Destination" id="dest">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form> 
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- END MODAL LIVRAISON -->
+
+        <!-- MODAL COMPTE -->
+
+          <div class="modal" id="compteModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Compte</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                          <div class="form-group">
+                            <label for="num">Numero de compte :</label>
+                            <input type="num" class="form-control" placeholder="Numero de compte" id="num">
+                          </div>
+                        <div class="form-group">
+                          <label for="name">Nom complet du destianatire :</label>
+                          <input type="text" class="form-control" placeholder="Tel., Whatsapp" id="num">
+                        </div>
+                        <div class="form-group">
+                          <label for="dest">Nom de la banque :</label>
+                          <input type="text" class="form-control" placeholder="Banque de depot" id="dest">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form> 
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- END MODAL COMPTE -->
+
+    {% endif %}
+
 {% endblock %}
 
 {%  block why_us %}

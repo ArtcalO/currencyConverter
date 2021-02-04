@@ -14,5 +14,7 @@ urlpatterns = [
 	path('choice/', views.choice, name='choice'),
 	path('step1/', views.step1, name='step1'),
 	path('step2/', views.step2, name='step2'),
+	path('step3/', views.step3, name='step3'),
+	path('requests/', views.requests, name='requests'),
 
 ]
