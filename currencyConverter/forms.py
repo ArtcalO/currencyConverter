@@ -102,25 +102,26 @@ class StepForm1(forms.Form):
 			attrs={
 				'placeholder':'Nom ','class':'form-control'
 				}
-			), label='nom', required=False)
+			), label='Nom ', required=False)
 	lastname = forms.CharField(
 		widget=forms.TextInput(
 			attrs={
 				'placeholder':'Prenom ','class':'form-control'
 				}
-			), label='prenom', required=False)
-	number = forms.CharField(
-		widget=forms.TextInput(
-			attrs={
-				'placeholder':'Prenom ','required':'false','class':'form-control'
-				}
-			), label='prenom', required=False)
+			), label='Prenom ', required=False)
 	email = forms.EmailField(
 		widget=forms.TextInput(
 			attrs={
-				'placeholder':'Adresse electronique ','class':'form-control'
+				'placeholder':'Email  ','class':'form-control'
 				}
-			), label='your email adress', required=False)
+			), label='Email ', required=False)
+
+	number = forms.CharField(
+		widget=forms.NumberInput(
+			attrs={
+				'placeholder':'Tel ','class':'form-control'
+				}
+			), label='Tel', required=False)
 
 class StepForm2(forms.Form):
 	firstname = forms.CharField(
@@ -150,6 +151,34 @@ class StepForm2(forms.Form):
 			), label='Tel. destinataire', required=False)
 
 
+class EcoCashForm(forms.Form):
+	ecocash = forms.CharField(widget=forms.NumberInput(attrs={
+		'placeholder':'Numero ecocash','class':'form-control','type':'number'
+		}),label='Ecocash')
 
+class LumiCashForm(forms.Form):
+	lumicash = forms.CharField(widget=forms.NumberInput(attrs={
+		'placeholder':'Numero lumicash','class':'form-control','type':'number'
+		}),label='Lumicash')
 
+class LivraisonForm(forms.Form):
+	tel_livraison = forms.CharField(widget=forms.TextInput(attrs={
+		'placeholder':'destinataire','class':'form-control'
+		}),label='Telephone Livraison')
+	domicile_livraison = forms.CharField(widget=forms.TextInput(attrs={
+		'placeholder':'Ex :Quartier, Zone, Commune','class':'form-control'
+		}),label='Adresse/Domicile')
 
+class CompteForm(forms.Form):
+	account_number = forms.CharField(widget=forms.TextInput(
+		attrs={
+			'placeholder':'','class':'form-control'
+		}), label='account_number')
+	account_holder = forms.CharField(widget=forms.TextInput(
+		attrs={
+			'placeholder':'','class':'form-control'
+		}), label='account_holder')
+	bank_name = forms.CharField(widget=forms.TextInput(
+		attrs={
+			'placeholder':'','class':'form-control'
+		}), label='bank_name')
