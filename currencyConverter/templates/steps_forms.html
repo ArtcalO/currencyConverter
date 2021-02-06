@@ -172,11 +172,9 @@
               <!-- Modal body -->
               <div class="modal-body">
                   <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-                      <div class="form-group">
-                        <label for="eco">Numero Ecocash:</label>
-                        <input type="number" class="form-control" placeholder="Numero EcoCash" id="eco">
-                      </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                    {% csrf_token %}
+                      {{ecocash_form.as_p}}
+                      <input type="submit" value="Enregistrer" name="ecocash" class="btn btn-primary">
                     </form> 
               </div>
 
@@ -201,11 +199,9 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-                        <div class="form-group">
-                          <label for="eco">Numero Lumicash:</label>
-                          <input type="number" class="form-control" placeholder="Numero EcoCash" id="eco">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        {% csrf_token %}
+                        {{lumicash_form.as_p}}
+                        <input type="submit" name="lumicash" value="Enregistrer" class="btn btn-primary">
                       </form> 
                 </div>
 
@@ -229,15 +225,9 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-                        <div class="form-group">
-                          <label for="num">Whatsapp/Tel :</label>
-                          <input type="number" class="form-control" placeholder="Tel., Whatsapp" id="num">
-                        </div>
-                        <div class="form-group">
-                          <label for="dest">Quartier, Zone, Commune</label>
-                          <input type="text" class="form-control" placeholder="Destination" id="dest">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                      {% csrf_token %}
+                        {{livraison_form.as_p}}
+                        <input type="submit" name="livraison" value="Enregistrer" class="btn btn-primary">
                       </form> 
                 </div>
               </div>
@@ -260,19 +250,9 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" action="." class="form-signin">
-                          <div class="form-group">
-                            <label for="num">Numero de compte :</label>
-                            <input type="num" class="form-control" placeholder="Numero de compte" id="num">
-                          </div>
-                        <div class="form-group">
-                          <label for="name">Nom complet du destianatire :</label>
-                          <input type="text" class="form-control" placeholder="Tel., Whatsapp" id="num">
-                        </div>
-                        <div class="form-group">
-                          <label for="dest">Nom de la banque :</label>
-                          <input type="text" class="form-control" placeholder="Banque de depot" id="dest">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                      {% csrf_token %}
+                          {{compte_form.as_p}}
+                        <input type="submit" name="compte" value="Enregistrer" class="btn btn-primary">
                       </form> 
                 </div>
               </div>
