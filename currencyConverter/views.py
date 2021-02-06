@@ -13,14 +13,14 @@ def index(request):
 	template_name='index.html'
 	form = ConversionForm(request.POST)
 	if "action" in request.POST:
-		return redirect(choice)
+		if form.is_valid():
+			request.session['first_form'] = form.cleaned_data
+			return redirect(choice)
 	return render(request, template_name, locals())
 
 def requests(request):
 	
 	return render(request, 'requests.html', locals())
-
-
 
 def choice(request):
 	choice = True
@@ -29,17 +29,56 @@ def choice(request):
 def step1(request):
 	step_form1 = StepForm1(request.POST or None)
 	if step_form1.is_valid():
+		request.session['step_form1'] = step_form1.cleaned_data
 		return redirect(step2)
 	return render(request, 'steps_forms.html', locals())
 
 def step2(request):
 	step_form2 = StepForm2(request.POST or None)
 	if step_form2.is_valid():
+		request.session['step_form2'] = step_form2.cleaned_data
 		return redirect(step3)
 	return render(request, 'steps_forms.html', locals())
 
 def step3(request):
 	choice2 = True
+	first_ = request.session.pop('first_form',{})
+	step_1 = request.session.pop('step_form1',{})
+	step_2 = request.session.pop('step_form2',{})
+	
+	print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+	print(first_)
+	print(step_1)
+	print(step_2)
+
+	ecocash_form=EcoCashForm(request.POST)
+	lumicash_form=LumiCashForm(request.POST)
+	livraison_form=LivraisonForm(request.POST)
+	compte_form=CompteForm(request.POST)
+
+	if "ecocash" in request.POST:
+		if ecocash_form.is_valid():
+			eco_form = ecocash_form.cleaned_data
+			print(eco_form)
+			return redirect(index)
+
+	if "lumicash" in request.POST:
+		if lumicash_form.is_valid():
+			lumi_form = lumicash_form.cleaned_data
+			print(lumi_form)
+			return redirect(index)
+
+	if "livraison" in request.POST:
+		if livraison_form.is_valid():
+			livr_form = livraison_form.cleaned_data
+			print(livr_form)
+			return redirect(index)
+
+	if "compte" in request.POST:
+		if compte_form.is_valid():
+			cp_form = compte_form.cleaned_data
+			print(cp_form)
+			return redirect(index)
 	return render(request, 'steps_forms.html', locals())
 
 @login_required(login_url=('login'))
@@ -130,6 +169,10 @@ def update(request, country_id):
 
 def about(request):
 	form = ConversionForm(request.POST)
+	if "action" in request.POST:
+		if form.is_valid():
+			request.session['first_form'] = form.cleaned_data
+			return redirect(choice)
 	return render(request, 'about.html', locals())
 
 def contact(request):
