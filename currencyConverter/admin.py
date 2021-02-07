@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Profil)
 admin.site.register(Country)
 admin.site.register(TransactionPercent)
+admin.site.register(Tracking)

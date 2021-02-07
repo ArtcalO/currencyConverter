@@ -42,42 +42,64 @@ def step2(request):
 
 def step3(request):
 	choice2 = True
-	first_ = request.session.pop('first_form',{})
-	step_1 = request.session.pop('step_form1',{})
-	step_2 = request.session.pop('step_form2',{})
-	
-	print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-	print(first_)
-	print(step_1)
-	print(step_2)
+	ecocash_form=EcoCashForm(request.POST or None)
+	lumicash_form=LumiCashForm(request.POST or None)
+	livraison_form=LivraisonForm(request.POST or None)
+	compte_form=CompteForm(request.POST or None)
 
-	ecocash_form=EcoCashForm(request.POST)
-	lumicash_form=LumiCashForm(request.POST)
-	livraison_form=LivraisonForm(request.POST)
-	compte_form=CompteForm(request.POST)
-
-	if "ecocash" in request.POST:
+	if "ecoform" in request.POST:
 		if ecocash_form.is_valid():
 			eco_form = ecocash_form.cleaned_data
+			print("##################################")
 			print(eco_form)
+			print("##################################")
+			first_ = request.session.pop('first_form',{})
+			step_1 = request.session.pop('step_form1',{})
+			step_2 = request.session.pop('step_form2',{})
+			c_in = Country.objects.get(usd_value=first_['country_from'])
+			c_out = Country.objects.get(usd_value=first_['country_to'])
+
+			tracking_obj = Tracking.objects.create(
+				currency_in=c_in,
+				currency_out=c_out,
+				amount_in=first_['amount'],
+				amount_out=121212,
+
+
+				name_sender = step_1['firstname'],
+				subname_sender = step_1['lastname'],
+				email_sender = step_1['email'],
+				phone_sender = step_1['number'],
+
+				name_reciever = step_2['firstname'],
+				subname_reciever = step_2['lastname'],
+				email_reciever = step_2['email'],
+				phone_reciever = step_2['number'],
+				)
+			tracking_obj.ecocash = eco_form['ecocash']
+			tracking_obj.save()
 			return redirect(index)
 
 	if "lumicash" in request.POST:
 		if lumicash_form.is_valid():
-			lumi_form = lumicash_form.cleaned_data
-			print(lumi_form)
+			lumi_form = lumicash_form.cleaned_data['lumicash']
+			tracking_obj.lumicash = lumi_form
+			tracking_obj.save()
 			return redirect(index)
 
 	if "livraison" in request.POST:
-		if livraison_form.is_valid():
-			livr_form = livraison_form.cleaned_data
-			print(livr_form)
+		if livraison_form.is_valid(): 
+			tracking_obj.tel_livraison = livraison_form.cleaned_data['tel_livraison']
+			tracking_obj.domicile_livraison = livraison_form.cleaned_data['domicile_livraison']
+			tracking_obj.save()
 			return redirect(index)
 
 	if "compte" in request.POST:
 		if compte_form.is_valid():
-			cp_form = compte_form.cleaned_data
-			print(cp_form)
+			tracking_obj.account_number = compte_form.cleaned_data['account_number']
+			tracking_obj.account_holder = compte_form.cleaned_data['account_holder']
+			tracking_obj.bank_name = compte_form.cleaned_data['bank_name']
+			tracking_obj.save()
 			return redirect(index)
 	return render(request, 'steps_forms.html', locals())
 
@@ -142,7 +164,7 @@ class Register(View):
 					password=password)
 					user.first_name, user.last_name = firstname, lastname
 					user.save()
-					profile = Profile(user=user, phone=phone )
+					profile = Profile(user=user, phone=phone)
 					profile.save()
 					messages.success(request, "Hello "+username+", you are registered successfully!")
 					if user:

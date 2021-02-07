@@ -171,10 +171,10 @@
 
               <!-- Modal body -->
               <div class="modal-body">
-                  <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                  <form method="post" action="." class="form-signin">
                     {% csrf_token %}
-                      {{ecocash_form.as_p}}
-                      <input type="submit" value="Enregistrer" name="ecocash" class="btn btn-primary">
+                      {{ ecocash_form.as_p }}
+                      <input type="submit" name="ecoform" value="Envoyer">
                     </form> 
               </div>
 
@@ -252,7 +252,7 @@
                     <form method="post" enctype="multipart/form-data" action="." class="form-signin">
                       {% csrf_token %}
                           {{compte_form.as_p}}
-                        <input type="submit" name="compte" value="Enregistrer" class="btn btn-primary">
+                        <input  name="compte" value="Enregistrer" class="btn btn-primary" type="submit">
                       </form> 
                 </div>
               </div>
