@@ -23,6 +23,14 @@
 					return parseFloat(str_value);
 				}
 			};
+			function reverseValue(str_value){
+				if(str_value.includes('/')){
+					var splited_string = str_value.split('/');
+					return parseFloat(splited_string[1]);
+				}else{
+					return parseFloat(str_value);
+				}
+			};
 			function reset(){
 				$("#total").text('');
 			    $("#total_currency").text('');
@@ -43,6 +51,11 @@
 					return (parseFloat(str_to.split('/')[1])/parseFloat(str_from)).toFixed(4);
 				}
 
+			};
+
+			function splitValues(str_data){
+				var data_list = str_data.split('|');
+				return data_list;
 			};
 
 			function actionDone(){
@@ -69,9 +82,62 @@
 			    }
 			    
 			};
+
+
+			function senderAction(){
+				var amount = parseFloat($("#inputSender").val());
+				if(amount){
+					$("#messageSender").show();
+					var values_sender = $("#fromToSender").val();
+					var values_sender_splited = splitValues(values_sender);
+					var value_from = getValue(values_sender_splited[0]);
+					var value_to = getValue(values_sender_splited[1]);
+					var final_amount = amount*value_from/value_to;
+					$("#displaySend").text(''+separatedNumber(final_amount)+'	BIF');
+				}
+				else {
+					$("#displaySend").text('0');
+					$("#messageSender").hide();
+				}
+				
+			};
+
+			function recieverAction(){
+				var amount = parseFloat($("#inputReciever").val());
+				if(amount){
+					$("#messageReciever").show();
+					var values_sender = $("#fromToReciever").val();
+					var values_sender_splited = splitValues(values_sender);
+					var value_from = reverseValue(values_sender_splited[0]);
+					var final_amount = amount/value_from;
+					$("#displayReciever").text(''+separatedNumber(final_amount)+'	CAD');
+				}
+				else {
+					$("#displayReciever").text('0');
+					$("#messageReciever").hide();
+				}
+			};
 			
 		  $("#id_amount").keyup(actionDone);
 		  $("#id_amount").keyup(displayBtn);
 		  $("#id_country_to").change(actionDone);
 		  $("#id_country_from").change(actionDone);
+		  $("#wantSendBtn").click(function(){
+		  	$("#converterDiv").hide();
+		  	$("#wantRecieveDiv").hide();
+		  	$("#wantSendDiv").show();
+		  });
+		  $("#wantRecieveBtn").click(function(){
+		  	$("#wantSendDiv").hide();
+		  	$("#converterDiv").hide();
+		  	$("#wantRecieveDiv").show();
+		  });
+		 
+		  $("#prev").click(function(){
+		  	$("#converterDiv").show();
+		  	$("#wantRecieveDiv").hide();
+		  	$("#wantSendDiv").hide();
+		  })
+		  $("#inputSender").keyup(senderAction);
+		  $("#inputReciever").keyup(recieverAction);
 		});
