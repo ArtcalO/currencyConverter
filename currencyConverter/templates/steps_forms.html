@@ -178,7 +178,6 @@
                     </form> 
               </div>
 
-
             </div>
           </div>
         </div>
@@ -198,10 +197,10 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                    <form method="post" action="." class="form-signin">
                         {% csrf_token %}
                         {{lumicash_form.as_p}}
-                        <input type="submit" name="lumicash" value="Enregistrer" class="btn btn-primary">
+                        <input type="submit" name="lumiform" value="Envoyer">
                       </form> 
                 </div>
 
@@ -224,10 +223,10 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                    <form method="post" action="." class="form-signin">
                       {% csrf_token %}
                         {{livraison_form.as_p}}
-                        <input type="submit" name="livraison" value="Enregistrer" class="btn btn-primary">
+                        <input type="submit" name="livraisonform" value="Envoyer">
                       </form> 
                 </div>
               </div>
@@ -249,10 +248,10 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" action="." class="form-signin">
+                    <form method="post" action="." class="form-signin">
                       {% csrf_token %}
                           {{compte_form.as_p}}
-                        <input  name="compte" value="Enregistrer" class="btn btn-primary" type="submit">
+                        <input type="submit" name="compteform" value="Envoyer">
                       </form> 
                 </div>
               </div>
