@@ -7,11 +7,20 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.db.models import Q
 
+def splitData(data_string):
+	if '/' in data_string:
+		data_list = data_string.split('/')
+		return float(float(data_list[0])/float(data_list[1]))
+	else:
+		return float(data_string)
 
 def index(request):
 	template_name='index.html'
 	form = ConversionForm(request.POST)
+	sender = Country.objects.get(name="Canada")
+	reciever = Country.objects.get(name="Burundi")
 	if "action" in request.POST:
 		if form.is_valid():
 			request.session['first_form'] = form.cleaned_data
@@ -19,9 +28,31 @@ def index(request):
 	return render(request, template_name, locals())
 
 def requests(request):
-	
+	trackings = Tracking.objects.filter(Q(Q(validated1=None)|Q(validated2=None)))
+
 	return render(request, 'requests.html', locals())
 
+def validerTrack(request, id):
+	track = Tracking.objects.get(id=id)
+	if(track.validated1 != None and track.validated2 !=None):
+		return redirect(requests)
+	if(track.validated1 == None and track.validated2 != None):
+		track.validated1.admin = request.user
+		track.validated1.validate = True
+		track.save()
+		return redirect(requests)
+	if(track.validated1 != None and track.validated2 == None):
+		track.validated2.admin = request.user
+		track.validated2.validate = True
+		track.save()
+		return redirect(requests)
+
+	if(track.validated1 == None and track.validated2 == None):
+		track.validated1.admin = request.user
+		track.validated1.validate = True
+		track.save()
+		return redirect(requests)
+		
 def choice(request):
 	choice = True
 	return render(request, 'steps_forms.html', locals())
@@ -50,9 +81,6 @@ def step3(request):
 	if "ecoform" in request.POST:
 		if ecocash_form.is_valid():
 			eco_form = ecocash_form.cleaned_data
-			print("##################################")
-			print(eco_form)
-			print("##################################")
 			first_ = request.session.pop('first_form',{})
 			step_1 = request.session.pop('step_form1',{})
 			step_2 = request.session.pop('step_form2',{})
@@ -63,7 +91,7 @@ def step3(request):
 				currency_in=c_in,
 				currency_out=c_out,
 				amount_in=first_['amount'],
-				amount_out=121212,
+				amount_out=first_['amount']*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
 
 
 				name_sender = step_1['firstname'],
@@ -80,31 +108,104 @@ def step3(request):
 			tracking_obj.save()
 			return redirect(index)
 
-	if "lumicash" in request.POST:
+	if "lumiform" in request.POST:
 		if lumicash_form.is_valid():
-			lumi_form = lumicash_form.cleaned_data['lumicash']
-			tracking_obj.lumicash = lumi_form
+			lumicash_data = lumicash_form.cleaned_data
+			first_ = request.session.pop('first_form',{})
+			step_1 = request.session.pop('step_form1',{})
+			step_2 = request.session.pop('step_form2',{})
+			c_in = Country.objects.get(usd_value=first_['country_from'])
+			c_out = Country.objects.get(usd_value=first_['country_to'])
+
+			tracking_obj = Tracking.objects.create(
+				currency_in=c_in,
+				currency_out=c_out,
+				amount_in=first_['amount'],
+				amount_out=first_['amount']*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
+
+
+				name_sender = step_1['firstname'],
+				subname_sender = step_1['lastname'],
+				email_sender = step_1['email'],
+				phone_sender = step_1['number'],
+
+				name_reciever = step_2['firstname'],
+				subname_reciever = step_2['lastname'],
+				email_reciever = step_2['email'],
+				phone_reciever = step_2['number'],
+				)
+			tracking_obj.lumicash = lumicash_data['lumicash']
 			tracking_obj.save()
 			return redirect(index)
 
-	if "livraison" in request.POST:
+	if "livraisonform" in request.POST:
 		if livraison_form.is_valid(): 
-			tracking_obj.tel_livraison = livraison_form.cleaned_data['tel_livraison']
-			tracking_obj.domicile_livraison = livraison_form.cleaned_data['domicile_livraison']
+			livraison_data = livraison_form.cleaned_data
+			first_ = request.session.pop('first_form',{})
+			step_1 = request.session.pop('step_form1',{})
+			step_2 = request.session.pop('step_form2',{})
+			c_in = Country.objects.get(usd_value=first_['country_from'])
+			c_out = Country.objects.get(usd_value=first_['country_to'])
+
+			tracking_obj = Tracking.objects.create(
+				currency_in=c_in,
+				currency_out=c_out,
+				amount_in=first_['amount'],
+				amount_out=first_['amount']*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
+
+
+				name_sender = step_1['firstname'],
+				subname_sender = step_1['lastname'],
+				email_sender = step_1['email'],
+				phone_sender = step_1['number'],
+
+				name_reciever = step_2['firstname'],
+				subname_reciever = step_2['lastname'],
+				email_reciever = step_2['email'],
+				phone_reciever = step_2['number'],
+				)
+			tracking_obj.tel_livraison=livraison_data['tel_livraison']
+			tracking_obj.domicile_livraison=livraison_data['domicile_livraison']
 			tracking_obj.save()
 			return redirect(index)
 
-	if "compte" in request.POST:
+	if "compteform" in request.POST:
 		if compte_form.is_valid():
-			tracking_obj.account_number = compte_form.cleaned_data['account_number']
-			tracking_obj.account_holder = compte_form.cleaned_data['account_holder']
-			tracking_obj.bank_name = compte_form.cleaned_data['bank_name']
+			compte_data = compte_form.cleaned_data
+			first_ = request.session.pop('first_form',{})
+			step_1 = request.session.pop('step_form1',{})
+			step_2 = request.session.pop('step_form2',{})
+			c_in = Country.objects.get(usd_value=first_['country_from'])
+			c_out = Country.objects.get(usd_value=first_['country_to'])
+
+			tracking_obj = Tracking.objects.create(
+				currency_in=c_in,
+				currency_out=c_out,
+				amount_in=first_['amount'],
+				amount_out=first_['amount']*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
+
+
+				name_sender = step_1['firstname'],
+				subname_sender = step_1['lastname'],
+				email_sender = step_1['email'],
+				phone_sender = step_1['number'],
+
+				name_reciever = step_2['firstname'],
+				subname_reciever = step_2['lastname'],
+				email_reciever = step_2['email'],
+				phone_reciever = step_2['number'],
+				)
+			
+			tracking_obj.account_number = compte_data['account_number']
+			tracking_obj.account_holder = compte_data['account_holder']
+			tracking_obj.bank_name = compte_data['bank_name']
 			tracking_obj.save()
 			return redirect(index)
 	return render(request, 'steps_forms.html', locals())
 
 @login_required(login_url=('login'))
 def AdminView(request):
+	adm = True
 	template = 'admin.html'
 	countries = Country.objects.all()
 	if 'addCurrency' in request.POST:
