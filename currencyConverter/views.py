@@ -31,17 +31,27 @@ def index(request):
 			return redirect(choice)
 	return render(request, template_name, locals())
 
+@login_required(login_url=('login'))
 def requests(request):
 	trackings = Tracking.objects.all()
 
 	return render(request, 'requests.html', locals())
 
+@login_required(login_url=('login'))
 def validerRecu(request, id):
 	track = Tracking.objects.get(id=id)
-	track.validated1 = True
-	track.save()
-	return redirect(requests)
+	valid_form = ValidationForm(request.POST or None, initial={'amount':track.amount_in})
+	if valid_form.is_valid():
+		valid = valid_form.cleaned_data
+		track.amount_in_recieve = valid['amount']
+		track.amount_out_deliver = float(valid['amount'])*(splitData(track.currency_in.usd_value)/splitData(track.currency_out.usd_value))
+		track.motif_validate1 = valid['motif_validate1']
+		track.validated1 = True
+		track.save()
+		return redirect(requests)
+	return render(request, 'valider_modal.html', locals())
 
+@login_required(login_url=('login'))
 def validerEnvoie(request, id):
 	track = Tracking.objects.get(id=id)
 	track.validated2 = True
@@ -105,6 +115,7 @@ def step3(request):
 				phone_reciever = step_2['number'],
 				)
 			tracking_obj.ecocash = eco_form['ecocash']
+			tracking_obj.ecocash_holder = eco_form['ecocash_holder']
 			tracking_obj.save()
 			return redirect(index)
 
@@ -135,6 +146,7 @@ def step3(request):
 				phone_reciever = step_2['number'],
 				)
 			tracking_obj.lumicash = lumicash_data['lumicash']
+			tracking_obj.lumicash_holder = lumicash_data['lumicash_holder']
 			tracking_obj.save()
 			return redirect(index)
 
@@ -165,7 +177,6 @@ def step3(request):
 				phone_reciever = step_2['number'],
 				)
 			tracking_obj.tel_livraison=livraison_data['tel_livraison']
-			tracking_obj.domicile_livraison=livraison_data['domicile_livraison']
 			tracking_obj.save()
 			return redirect(index)
 

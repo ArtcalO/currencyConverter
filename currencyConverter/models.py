@@ -26,6 +26,8 @@ class Tracking(models.Model):
 	currency_out = models.ForeignKey(Country, related_name='curr_out', on_delete=models.CASCADE)
 	amount_in = models.FloatField()
 	amount_out = models.FloatField()
+	amount_in_recieve = models.FloatField(null=True)
+	amount_out_deliver = models.FloatField(null=True)
 
 	# fielsd for sender
 
@@ -44,16 +46,18 @@ class Tracking(models.Model):
 	# Livraison 
 
 	lumicash = models.FloatField(null=True, blank=True)
+	lumicash_holder = models.CharField(max_length=100)
 	ecocash = models.FloatField(null=True, blank=True)
+	ecocash_holder = models.CharField(max_length=100)
 
 	tel_livraison = models.IntegerField(null=True, blank=True)
-	domicile_livraison = models.CharField(max_length=100, blank=True)
 
 	account_number = models.IntegerField(null=True, blank=True)
 	account_holder = models.CharField(max_length=100)
 	bank_name = models.CharField(max_length=150)
 
 	validated1 = models.BooleanField(default=False)
+	motif_validated1 = models.TextField(blank=True, null=True, default='Rien')
 	validated2 = models.BooleanField(default=False)
 
 	date = models.DateField(default=timezone.now)
@@ -71,7 +75,16 @@ class Tracking(models.Model):
 	def montantDepart(self):
 		return f"{self.amount_in} {self.currency_in.currency}"
 
+	def montantRecuAdmin(self):
+		return f"{self.amount_in_recieve} {self.currency_in.currency}"
+
+	def montantArriveAdmin(self):
+		return f"{self.amount_out_deliver} {self.currency_out.currency}"
+
 	def montantArrive(self):
 		return f"{self.amount_out} {self.currency_out.currency}"
+
+			
+
 
 

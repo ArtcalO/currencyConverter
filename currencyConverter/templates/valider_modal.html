@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block titre %}<title>Admin | Currency Converter</title>{% endblock %}
+
+{% block banner %}
+    <!-- Page top Section end -->
+    <section class="page-top-section set-bg" style="background-color:black; height:50px;">
+        
+    </section>
+    <!-- Page top Section end -->
+
+{% endblock banner %}
+
+{% block content %}
+  <div class="bg-secondary p-5" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Veillez Confirmer</h4>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form method="post" action="{% url 'recu' track.id %}" class="form-signin">
+              {% csrf_token %}
+                  {{ valid_form.as_p }}
+                <input class="btn btn-danger" type="submit" name="ecoform" value="Oui et Valider">
+                <p>NB: Cet action est irreversible</p>
+              </form> 
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{%  block why_us %}
+{% endblock %}
+
+{% block find_more %}
+{% endblock %}

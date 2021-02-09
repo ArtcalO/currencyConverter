@@ -34,8 +34,9 @@
                             </th>
                             <th>Expediteur</th>
                             <th>Destinataire</th>
-                            <th>Montant dep</th>
-                            <th>Montant arrive</th>
+                            <th>A Recuperer</th>
+                            <th>A Envoyer</th>
+                            <th>Livraison</th>
                             <th>Actions</th>
                             <th>Details</th>
                         </tr>  
@@ -51,28 +52,43 @@
                                 </td>
                                 <td >{{ tracking.senderFullName }}</td>
                                 <td >{{ tracking.recieverFullName }}</td>
-                                <td >{{ tracking.montantDepart }}</td>
-                                <td >{{ tracking.montantArrive }}</td>
+                                <td >{{ tracking.montantRecuAdmin }}</td>
+                                <td >{{ tracking.montantArriveAdmin }}</td>
                                 <td >
-                                    <form>
-                                        {% if  not tracking.validated1 %}
-                                            <a href="{% url 'recu' tracking.id %}" class="btn btn-primary btn-sm">Valider reçu</a>
-                                        {% endif %}
-                                        {% if tracking.validated1 and not tracking.validated2 %}
-                                            <a href="{% url 'envoi' tracking.id %}" class="btn btn-primary btn-sm">Valider envoi</a>
-                                        {% endif %}
-                                        {% if tracking.validated1 and tracking.validated2 %}
-                                            <button class="btn btn-success btn-sm" >Déja Validé</button>
-                                        {% endif %}
-                                    </form>
+                                    {% if tracking.lumicash %}
+                                        Lumicash : {{ tracking.lumicash }}
+                                    {% endif %}
+                                    {% if tracking.ecocash %}
+                                        Ecocash : {{ tracking.ecocash }}
+                                    {% endif %}
+
+                                    {% if tracking.account_number %}
+                                        Compte : {{ tracking.account_number }}
+                                    {% endif %}
+
+                                    {% if tracking.tel_livraison %}
+                                        Livraison : {{ tracking.tel_livraison }}
+                                    {% endif %}
+                                </td>
+                                <td >
+                                    {% if  not tracking.validated1 %}
+                                        <a href="{% url 'recu' tracking.id %}" class="btn btn-primary btn-sm">Valider recu</a>
+                                        
+                                    {% endif %}
+                                    {% if tracking.validated1 and not tracking.validated2 %}
+                                        <a href="{% url 'envoi' tracking.id %}" class="btn btn-primary btn-sm">Valider envoi</a>
+                                    {% endif %}
+                                    {% if tracking.validated1 and tracking.validated2 %}
+                                        <div  class="btn btn-success btn-sm" >Déja Validé</div>
+                                    {% endif %}
                                     </td>
                                 <td >
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#pendingModal">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#pendingModal{{ tracking.id }}">
                                 Voir
                               </button>
                                 </td>
-                            </tr>
-                                <div class="modal" id="pendingModal">
+                            </tr>                                        
+                                <div class="modal" id="pendingModal{{ tracking.id }}">
                                   <div class="modal-dialog ">
                                     <div class="modal-content">
 
@@ -88,14 +104,21 @@
                                             <div class="card">
                                                 <div class="card-header">
                                                     Date
-                                                    <strong>01/01/01/2018</strong> 
-                                                    <span class="float-right"> <strong>Status:</strong> Pending</span>
+                                                    <strong>{{ tracking.date }}</strong> 
+                                                    <span class="float-right"> <strong>Status:</strong>
+                                                        {% if not tracking.validated1  or not tracking.validated2 %}
+                                                            Non validé
+                                                        {% endif %}
+                                                        {% if  tracking.validated1  or tracking.validated2 %}
+                                                            Validé
+                                                        {% endif %}
+                                                     </span>
 
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="row mb-4">
+                                                    <div class="row">
                                                         <div class="col-sm-6">
-                                                            <h6 class="mb-3">De la part de :</h6>
+                                                            <h6 class="mb-1">De la part de :</h6>
                                                             <div>
                                                                 <strong>{{ tracking.senderFullName }}</strong>
                                                             </div>
@@ -105,7 +128,7 @@
                                                         </div>
 
                                                         <div class="col-sm-6">
-                                                            <h6 class="mb-3">Vers : </h6>
+                                                            <h6 >Vers : </h6>
                                                             <div>
                                                                 <strong>{{ tracking.recieverFullName }}</strong>
                                                             </div>
@@ -117,7 +140,35 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            <h6>Holla</h6>
+                                            <p>Montant envoyé client :......................... <strong>{{ tracking.montantDepart }}</strong></p>
+                                            <p>Montant à rendre :......................... <strong>{{ tracking.montantArrive }}</strong></p>
+                                            <hr>
+
+                                            <p>Montant recu admin :......................... <strong>{{ tracking.montantRecuAdmin }}</strong></p>
+                                            <p>Montant à rendre :......................... <strong>{{ tracking.montantArriveAdmin }}</strong></p>
+                                            <hr>
+
+                                            <p>Deatil Transfert</p>
+                                            {% if tracking.lumicash %}
+
+                                                <p>Lumicash :......................... <strong>{{ tracking.lumicash }}</strong></p>
+                                                <p>Nom lumicash :......................... <strong>{{ tracking.lumicash_holder }}</strong></p>
+
+                                            {% endif %}
+                                            {% if tracking.ecocash %}
+                                                <p>Lumicash :......................... <strong>{{ tracking.ecocash }}</strong></p>
+                                                <p>Nom ecocash :......................... <strong>{{ tracking.ecocash_holder }}</strong></p>
+                                            {% endif %}
+
+                                            {% if tracking.account_number %}
+                                                <p>N° Compte :......................... <strong>{{ tracking.account_number }}</strong></p>
+                                                <p>Nom Compte :......................... <strong>{{ tracking.account_holder }}</strong></p>
+                                                <p>Nom Banque :......................... <strong>{{ tracking.bank_name }}</strong></p>
+                                            {% endif %}
+
+                                            {% if tracking.tel_livraison %}
+                                                <p>Livraison :......................... <strong>{{ tracking.tel_livraison }}</strong></p>
+                                            {% endif %}
                                             </div>
                                         </div>
                                     </div>

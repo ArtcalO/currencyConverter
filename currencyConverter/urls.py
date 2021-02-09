@@ -16,7 +16,7 @@ urlpatterns = [
 	path('step2/', views.step2, name='step2'),
 	path('step3/', views.step3, name='step3'),
 	path('requests/', views.requests, name='requests'),
-	path('valid1/<int:id>', views.validerRecu, name='recu'),
-	path('valid2/<int:id>', views.validerEnvoie, name='envoi')
+	path('_Pmo_Px/<int:id>', views.validerRecu, name='recu'),
+	path('_Qkld_mb/<int:id>', views.validerEnvoie, name='envoi')
 
 ]
