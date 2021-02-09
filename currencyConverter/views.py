@@ -131,8 +131,8 @@ def step3(request):
 			tracking_obj = Tracking.objects.create(
 				currency_in=c_in,
 				currency_out=c_out,
-				amount_in=first_['amount'],
-				amount_out=first_['amount']*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
+				amount_in=step_1['amount'],
+				amount_out=float(step_1['amount'])*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
 
 
 				name_sender = step_1['firstname'],
@@ -162,8 +162,8 @@ def step3(request):
 			tracking_obj = Tracking.objects.create(
 				currency_in=c_in,
 				currency_out=c_out,
-				amount_in=first_['amount'],
-				amount_out=first_['amount']*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
+				amount_in=step_1['amount'],
+				amount_out=float(step_1['amount'])*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
 
 
 				name_sender = step_1['firstname'],
@@ -192,8 +192,8 @@ def step3(request):
 			tracking_obj = Tracking.objects.create(
 				currency_in=c_in,
 				currency_out=c_out,
-				amount_in=first_['amount'],
-				amount_out=first_['amount']*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
+				amount_in=step_1['amount'],
+				amount_out=float(step_1['amount'])*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
 
 
 				name_sender = step_1['firstname'],

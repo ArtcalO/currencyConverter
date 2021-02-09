@@ -43,7 +43,9 @@
                       </thead>
                       <tbody>
         	                {% for tracking in trackings %}
-                            <tr>
+                            <tr {% if tracking.amount_in != tracking.amount_in_recieve %}
+                                class="bg-danger text-white" 
+                            {% endif %}>
                                 <td class="col-md-1">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input">
@@ -52,8 +54,21 @@
                                 </td>
                                 <td >{{ tracking.senderFullName }}</td>
                                 <td >{{ tracking.recieverFullName }}</td>
-                                <td >{{ tracking.montantRecuAdmin }}</td>
-                                <td >{{ tracking.montantArriveAdmin }}</td>
+                                <td >
+                                    {% if not tracking.amount_in_recieve %}
+                                        {{ tracking.montantDepart }} : cl
+                                    {% else %}
+                                        {{ tracking.montantRecuAdmin }}
+                                    {% endif %}
+                                    
+                                </td>
+                                <td >
+                                    {% if tracking.amount_out_deliver  %}
+                                        {{ tracking.montantArriveAdmin }}
+                                    {% else %}
+                                        {{ tracking.montantArrive }} : cl
+                                    {% endif %}
+                                </td>
                                 <td >
                                     {% if tracking.lumicash %}
                                         Lumicash : {{ tracking.lumicash }}
@@ -109,7 +124,7 @@
                                                         {% if not tracking.validated1  or not tracking.validated2 %}
                                                             Non validé
                                                         {% endif %}
-                                                        {% if  tracking.validated1  or tracking.validated2 %}
+                                                        {% if  tracking.validated2 %}
                                                             Validé
                                                         {% endif %}
                                                      </span>
@@ -148,7 +163,7 @@
                                             <p>Montant à rendre :......................... <strong>{{ tracking.montantArriveAdmin }}</strong></p>
                                             <hr>
 
-                                            <p>Deatil Transfert</p>
+                                            <p>Detail Transfert</p>
                                             {% if tracking.lumicash %}
 
                                                 <p>Lumicash :......................... <strong>{{ tracking.lumicash }}</strong></p>
@@ -167,7 +182,7 @@
                                             {% endif %}
 
                                             {% if tracking.tel_livraison %}
-                                                <p>Livraison :......................... <strong>{{ tracking.tel_livraison }}</strong></p>
+                                                <p>Tel. Livraison :.........................<strong>{{ tracking.tel_livraison }}</strong></p>
                                             {% endif %}
                                             </div>
                                         </div>
