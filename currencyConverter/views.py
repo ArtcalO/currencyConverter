@@ -9,6 +9,8 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.db.models import Q
 
+amount_ = 0
+
 def splitData(data_string):
 	if '/' in data_string:
 		data_list = data_string.split('/')
@@ -17,6 +19,7 @@ def splitData(data_string):
 		return float(data_string)
 
 def index(request):
+	global amount_
 	template_name='index.html'
 	form = ConversionForm(request.POST)
 	sender = Country.objects.get(name="Canada")
@@ -24,47 +27,43 @@ def index(request):
 	if "action" in request.POST:
 		if form.is_valid():
 			request.session['first_form'] = form.cleaned_data
+			amount_ = form.cleaned_data['amount']
 			return redirect(choice)
 	return render(request, template_name, locals())
 
 def requests(request):
-	trackings = Tracking.objects.filter(Q(Q(validated1=None)|Q(validated2=None)))
+	trackings = Tracking.objects.all()
 
 	return render(request, 'requests.html', locals())
 
-def validerTrack(request, id):
+def validerRecu(request, id):
 	track = Tracking.objects.get(id=id)
-	if(track.validated1 != None and track.validated2 !=None):
-		return redirect(requests)
-	if(track.validated1 == None and track.validated2 != None):
-		track.validated1.admin = request.user
-		track.validated1.validate = True
-		track.save()
-		return redirect(requests)
-	if(track.validated1 != None and track.validated2 == None):
-		track.validated2.admin = request.user
-		track.validated2.validate = True
-		track.save()
-		return redirect(requests)
+	track.validated1 = True
+	track.save()
+	return redirect(requests)
 
-	if(track.validated1 == None and track.validated2 == None):
-		track.validated1.admin = request.user
-		track.validated1.validate = True
-		track.save()
-		return redirect(requests)
+def validerEnvoie(request, id):
+	track = Tracking.objects.get(id=id)
+	track.validated2 = True
+	track.save()
+	return redirect(requests)
 		
 def choice(request):
 	choice = True
 	return render(request, 'steps_forms.html', locals())
 
 def step1(request):
-	step_form1 = StepForm1(request.POST or None)
+	global amount_
+	default_data = {'amount': amount_}
+
+	step_form1 = StepForm1(request.POST or None,initial=default_data)
 	if step_form1.is_valid():
 		request.session['step_form1'] = step_form1.cleaned_data
 		return redirect(step2)
 	return render(request, 'steps_forms.html', locals())
 
 def step2(request):
+	
 	step_form2 = StepForm2(request.POST or None)
 	if step_form2.is_valid():
 		request.session['step_form2'] = step_form2.cleaned_data
@@ -83,6 +82,7 @@ def step3(request):
 			eco_form = ecocash_form.cleaned_data
 			first_ = request.session.pop('first_form',{})
 			step_1 = request.session.pop('step_form1',{})
+			print(step_1)
 			step_2 = request.session.pop('step_form2',{})
 			c_in = Country.objects.get(usd_value=first_['country_from'])
 			c_out = Country.objects.get(usd_value=first_['country_to'])
@@ -90,8 +90,8 @@ def step3(request):
 			tracking_obj = Tracking.objects.create(
 				currency_in=c_in,
 				currency_out=c_out,
-				amount_in=first_['amount'],
-				amount_out=first_['amount']*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
+				amount_in=step_1['amount'],
+				amount_out=float(step_1['amount'])*(splitData(c_in.usd_value)/splitData(c_out.usd_value)),
 
 
 				name_sender = step_1['firstname'],

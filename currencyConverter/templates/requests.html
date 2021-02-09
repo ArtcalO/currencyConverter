@@ -36,6 +36,7 @@
                             <th>Destinataire</th>
                             <th>Montant dep</th>
                             <th>Montant arrive</th>
+                            <th>Actions</th>
                             <th>Details</th>
                         </tr>  
                       </thead>
@@ -52,6 +53,19 @@
                                 <td >{{ tracking.recieverFullName }}</td>
                                 <td >{{ tracking.montantDepart }}</td>
                                 <td >{{ tracking.montantArrive }}</td>
+                                <td >
+                                    <form>
+                                        {% if  not tracking.validated1 %}
+                                            <a href="{% url 'recu' tracking.id %}" class="btn btn-primary btn-sm">Valider reçu</a>
+                                        {% endif %}
+                                        {% if tracking.validated1 and not tracking.validated2 %}
+                                            <a href="{% url 'envoi' tracking.id %}" class="btn btn-primary btn-sm">Valider envoi</a>
+                                        {% endif %}
+                                        {% if tracking.validated1 and tracking.validated2 %}
+                                            <button class="btn btn-success btn-sm" >Déja Validé</button>
+                                        {% endif %}
+                                    </form>
+                                    </td>
                                 <td >
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#pendingModal">
                                 Voir
@@ -104,7 +118,6 @@
                                             </div>
                                             <hr>
                                             <h6>Holla</h6>
-                                            <a class="btn btn-primary btn-sm" href="{% url 'validertrack' tracking.id %}">Valider</a>
                                             </div>
                                         </div>
                                     </div>

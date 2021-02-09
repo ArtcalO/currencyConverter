@@ -16,6 +16,7 @@ urlpatterns = [
 	path('step2/', views.step2, name='step2'),
 	path('step3/', views.step3, name='step3'),
 	path('requests/', views.requests, name='requests'),
-	path('valid/<int:id>', views.validerTrack, name='validertrack'),
+	path('valid1/<int:id>', views.validerRecu, name='recu'),
+	path('valid2/<int:id>', views.validerEnvoie, name='envoi')
 
 ]

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 # Create your models here.
 class Profil(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -19,12 +20,6 @@ class TransactionPercent(models.Model):
 	def __str__(self):
 		return f"Le taux de transaction : {self.trans_percent}"
 
-class ValidateAdmin(models.Model):
-	admin = models.ForeignKey(User, null=True, blank=True, related_name='admin1', on_delete=models.CASCADE)
-	validate = models.BooleanField(default=False)
-
-	def __str__(self):
-		return self.amin.username+' '+self.validate
 
 class Tracking(models.Model):
 	currency_in = models.ForeignKey(Country, related_name='curr_in', on_delete=models.CASCADE)
@@ -58,8 +53,10 @@ class Tracking(models.Model):
 	account_holder = models.CharField(max_length=100)
 	bank_name = models.CharField(max_length=150)
 
-	validated1 = models.ForeignKey(ValidateAdmin, null=True, blank=True, related_name='admin1', on_delete=models.CASCADE)
-	validated2 = models.ForeignKey(ValidateAdmin, null=True, blank=True, related_name="admin2", on_delete=models.CASCADE)
+	validated1 = models.BooleanField(default=False)
+	validated2 = models.BooleanField(default=False)
+
+	date = models.DateField(default=timezone.now)
 
 
 	def __str__(self):
