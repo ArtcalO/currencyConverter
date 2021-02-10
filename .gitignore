@@ -6,3 +6,5 @@
 /media/
 
 000?_*.py
+
+*.sqlite3
