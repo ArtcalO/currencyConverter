@@ -167,8 +167,8 @@ class EcoCashForm(forms.Form):
 		'placeholder':'Numero ecocash','class':'form-control','type':'number'
 		}),label='Numero Ecocash', required=True)
 	ecocash_holder = forms.CharField(widget=forms.TextInput(attrs={
-		'placeholder':'Numero ecocash','class':'form-control','type':'text'
-		}),label='Nom detenteur compte', required=True)
+		'placeholder':'Nom detenteur ecocash','class':'form-control','type':'text'
+		}),label='Nom detenteur ecocash', required=True)
 
 class LumiCashForm(forms.Form):
 	lumicash = forms.CharField(widget=forms.NumberInput(attrs={
