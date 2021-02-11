@@ -133,7 +133,7 @@
 		  	$("#wantRecieveDiv").show();
 		  });
 		 
-		  $("#prev").click(function(){
+		  $(".prev").click(function(){
 		  	$("#converterDiv").show();
 		  	$("#wantRecieveDiv").hide();
 		  	$("#wantSendDiv").hide();

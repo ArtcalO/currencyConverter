@@ -120,7 +120,7 @@
 				{% block convert %}
 				
 				<div class="col-lg-6">
-					<form class="hero-form " method="post" enctype="multipart/form-data" action="." id="form">
+					<form class="hero-form " method="post" enctype="multipart/form-data" action="." id="converterDiv">
 						<div class="row mb-2">
 						    <div class="col">
 						      <button type="button" id="wantSendBtn" class=" form-control btn btn-outline-light" >Envoyer</button>
@@ -129,7 +129,7 @@
 						      <button type="button" id="wantRecieveBtn" class=" form-control btn btn-outline-light">Recevoir</button>
 						    </div>
 						</div>
-						  <div id="converterDiv" >
+						  <div  >
 							{% csrf_token %}
 	                      	{% for field in form %}
 	                      		<div class="form-group">
@@ -153,7 +153,20 @@
 							  	<input  type="submit" name="action" value="Interessée? Passez à l'action en cliquant ici !" style="display:none;" id="userInfo" class="btn btn-primary btn-block text-white mt-2">
 							</div>
 						</div>
-						<div id="wantSendDiv" class=" mt-5" style="display:none;" >
+
+					</form>
+					<!--SEND FORM-->
+					<form  class="hero-form " method="post"  style="display:none;" action="." id="wantSendDiv">
+						<div class="row mb-2">
+						    <div class="col">
+						      <button type="button" id="wantSendBtn" class=" form-control btn btn-outline-light" >Envoyer</button>
+						    </div>
+						    <div class="col">
+						      <button type="button" id="wantRecieveBtn" class=" form-control btn btn-outline-light">Recevoir</button>
+						    </div>
+						</div>
+						  
+						<div class=" mt-5"  >
 							<div class="row ">
 							    <div class="col col-sm-7">
 							      <input type="number" id="inputSender" class=" form-control">
@@ -170,11 +183,25 @@
 									<div id="displaySend" class="btn btn-light btn-block" >0</div>
 								</div>
 							</div>
-							 <a id="prev">
+							 <a class="prev">
 							    <span class="carousel-control-prev-icon"></span>
 							  </a>
 						</div>
-						<div id="wantRecieveDiv" class=" mt-5" style="display:none;">
+						<input  type="submit" name="send" value="Interessée? Passez à l'action en cliquant ici !" class="btn btn-primary btn-block text-white mt-2">
+					</form>
+					<!-- RECIEVE FORM -->
+
+					<form  class="hero-form " method="post"  style="display:none;" action="." id="wantRecieveDiv">
+						<div class="row mb-2">
+						    <div class="col">
+						      <button type="button" id="wantSendBtn" class=" form-control btn btn-outline-light" >Envoyer</button>
+						    </div>
+						    <div class="col">
+						      <button type="button" id="wantRecieveBtn" class=" form-control btn btn-outline-light">Recevoir</button>
+						    </div>
+						</div>
+						  
+						<div class=" mt-5" >
 							<div class="row mt-2">
 							    <div class="col col-sm-7">
 							      <input type="number" id="inputReciever"  class=" form-control" >
@@ -195,6 +222,7 @@
 							    <span class="carousel-control-prev-icon"></span>
 							  </a>
 						</div>
+						<input  type="submit" name="send" value="Interessée? Passez à l'action en cliquant ici !" class="btn btn-primary btn-block text-white mt-2">
 					</form>
 				</div>
 
