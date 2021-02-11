@@ -24,6 +24,7 @@ def index(request):
 	form = ConversionForm(request.POST)
 	sender = Country.objects.get(name="Canada")
 	reciever = Country.objects.get(name="Burundi")
+	rc_value = reciever.usd_value.split('/')[1]
 	if "action" in request.POST:
 		if form.is_valid():
 			print(form.cleaned_data)
