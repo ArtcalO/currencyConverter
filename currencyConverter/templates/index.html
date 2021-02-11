@@ -120,15 +120,16 @@
 				{% block convert %}
 				
 				<div class="col-lg-6">
-					<form class="hero-form " method="post" enctype="multipart/form-data" action="." id="converterDiv">
-						<div class="row mb-2">
+					<div class="row mb-2">
 						    <div class="col">
-						      <button type="button" id="wantSendBtn" class=" form-control btn btn-outline-light" >Envoyer</button>
+						      <button type="button" id="wantSendBtn" class=" form-control btn btn-success btn-sm" >Envoyer</button>
 						    </div>
 						    <div class="col">
-						      <button type="button" id="wantRecieveBtn" class=" form-control btn btn-outline-light">Recevoir</button>
+						      <button type="button" id="wantRecieveBtn" class=" form-control btn btn-success btn-sm">Recevoir</button>
 						    </div>
 						</div>
+					<form class="hero-form " method="post"  action="." id="converterDiv">
+						
 						  <div  >
 							{% csrf_token %}
 	                      	{% for field in form %}
@@ -157,22 +158,14 @@
 					</form>
 					<!--SEND FORM-->
 					<form  class="hero-form " method="post"  style="display:none;" action="." id="wantSendDiv">
-						<div class="row mb-2">
-						    <div class="col">
-						      <button type="button" id="wantSendBtn" class=" form-control btn btn-outline-light" >Envoyer</button>
-						    </div>
-						    <div class="col">
-						      <button type="button" id="wantRecieveBtn" class=" form-control btn btn-outline-light">Recevoir</button>
-						    </div>
-						</div>
-						  
+						  {% csrf_token %}
 						<div class=" mt-5"  >
 							<div class="row ">
 							    <div class="col col-sm-7">
-							      <input type="number" id="inputSender" class=" form-control">
+							      <input type="number" name="inputsend" id="inputSender" class=" form-control">
 							    </div>
 							    <div class="col col-sm-5">
-							          <select class="form-control" id="fromToSender">
+							          <select class="form-control" name="outputsend" id="fromToSender">
 								        <option value="{{ sender.usd_value }}|{{ reciever.usd_value }}">{{ sender.currency }}</option>
 								      </select>
 							    </div>
@@ -192,14 +185,6 @@
 					<!-- RECIEVE FORM -->
 
 					<form  class="hero-form " method="post"  style="display:none;" action="." id="wantRecieveDiv">
-						<div class="row mb-2">
-						    <div class="col">
-						      <button type="button" id="wantSendBtn" class=" form-control btn btn-outline-light" >Envoyer</button>
-						    </div>
-						    <div class="col">
-						      <button type="button" id="wantRecieveBtn" class=" form-control btn btn-outline-light">Recevoir</button>
-						    </div>
-						</div>
 						  
 						<div class=" mt-5" >
 							<div class="row mt-2">
@@ -218,7 +203,7 @@
 									<div id="displayReciever" class="btn btn-light btn-block" >0</div>
 								</div>
 							</div>
-							<a id="prev">
+							<a class="prev">
 							    <span class="carousel-control-prev-icon"></span>
 							  </a>
 						</div>

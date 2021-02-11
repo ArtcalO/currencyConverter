@@ -26,9 +26,19 @@ def index(request):
 	reciever = Country.objects.get(name="Burundi")
 	if "action" in request.POST:
 		if form.is_valid():
+			print(form.cleaned_data)
 			request.session['first_form'] = form.cleaned_data
 			amount_ = form.cleaned_data['amount']
 			return redirect(choice)
+	if "send" in request.POST:
+		amount = float(request.POST.get('inputsend'))
+		data = {'country_from': sender.usd_value, 'country_to': reciever.usd_value, 'amount': amount}
+		request.session['first_form'] = data
+		amount_ = float(request.POST.get('inputsend'))
+		return redirect(choice)
+
+	if "recive" in request.POST:
+		
 	return render(request, template_name, locals())
 
 @login_required(login_url=('login'))
