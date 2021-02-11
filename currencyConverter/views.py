@@ -37,8 +37,13 @@ def index(request):
 		amount_ = float(request.POST.get('inputsend'))
 		return redirect(choice)
 
-	if "recive" in request.POST:
-		
+	if "recieve" in request.POST:
+		amount = float(request.POST.get('inputrecieve'))
+		data = {'country_from': reciever.usd_value, 'country_to': sender.usd_value, 'amount': amount}
+		request.session['first_form'] = data
+		amount_ = float(request.POST.get('inputrecieve'))
+		return redirect(choice)
+
 	return render(request, template_name, locals())
 
 @login_required(login_url=('login'))
