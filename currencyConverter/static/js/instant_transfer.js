@@ -1,3 +1,24 @@
+		$(document).ready(function(){
+			$("#search").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#myTable tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+		});
+		function myFunction() {
+		  /* Get the text field */
+		  var copyText = document.getElementById("myInput");
+
+		  /* Select the text field */
+		  copyText.select();
+		  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+		  /* Copy the text inside the text field */
+		  document.execCommand("copy");
+
+		  /* Alert the copied text */
+		} 
 
 		function separatedNumber(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");

@@ -8,6 +8,8 @@ from .forms import *
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.db.models import Q
+from django.views.generic import ListView
+from django.core.paginator import Paginator
 
 amount_ = 0
 
@@ -49,9 +51,15 @@ def index(request):
 
 @login_required(login_url=('login'))
 def requests(request):
-	trackings = Tracking.objects.all()
+	trackings = Tracking.objects.all().order_by('-id')
+	paginator = Paginator(trackings, 5)
+	try:
+		page_number = request.GET.get('page')
+	except:
+		page_number = 1
+	page_obj = paginator.get_page(page_number)
 
-	return render(request, 'requests.html', locals())
+	return render(request, 'requests.html', {'page_obj': page_obj})
 
 @login_required(login_url=('login'))
 def validerRecu(request, id):
@@ -133,6 +141,10 @@ def step3(request):
 			tracking_obj.ecocash = eco_form['ecocash']
 			tracking_obj.ecocash_holder = eco_form['ecocash_holder']
 			tracking_obj.save()
+			messages.success(requests, "Vos informations ont été envoyées avec success. Notre equipe se charge d la suite. N'hesitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
+			return redirect(index)
+		else:
+			messages.error("Une erreur de saisie est survenue, veuillez réessayer")
 			return redirect(index)
 
 	if "lumiform" in request.POST:
@@ -164,6 +176,10 @@ def step3(request):
 			tracking_obj.lumicash = lumicash_data['lumicash']
 			tracking_obj.lumicash_holder = lumicash_data['lumicash_holder']
 			tracking_obj.save()
+			messages.success(requests, "Vos informations ont été envoyées avec success. Notre equipe se charge d la suite. N'hesitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
+			return redirect(index)
+		else:
+			messages.error("Une erreur de saisie est survenue, veuillez réessayer")
 			return redirect(index)
 
 	if "livraisonform" in request.POST:
@@ -194,6 +210,10 @@ def step3(request):
 				)
 			tracking_obj.tel_livraison=livraison_data['tel_livraison']
 			tracking_obj.save()
+			messages.success(requests, "Vos informations ont été envoyées avec success. Notre equipe se charge d la suite. N'hesitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
+			return redirect(index)
+		else:
+			messages.error("Une erreur de saisie est survenue, veuillez réessayer")
 			return redirect(index)
 
 	if "compteform" in request.POST:
@@ -227,6 +247,10 @@ def step3(request):
 			tracking_obj.account_holder = compte_data['account_holder']
 			tracking_obj.bank_name = compte_data['bank_name']
 			tracking_obj.save()
+			messages.success(requests, "Vos informations ont été envoyées avec success. Notre equipe se charge d la suite. N'hesitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
+			return redirect(index)
+		else:
+			messages.error("Une erreur de saisie est survenue, veuillez réessayer")
 			return redirect(index)
 	return render(request, 'steps_forms.html', locals())
 
