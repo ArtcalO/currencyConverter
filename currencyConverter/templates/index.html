@@ -43,13 +43,26 @@
 	<!-- Header Section -->
 	
 	<header class="header-section">
-		{% if messages %}
-			<ul class="messages">
-			    {% for message in messages %}
-			    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-			    {% endfor %}
-			</ul>
-		{% endif %}
+		     {% if messages %}
+                {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                  <div class="alert alert-success alert-dismissible fade show text-center" id="success-alert" role="alert">
+                     {{ message }}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  {% endif %}
+                  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger alert-dismissible fade show text-center" id="danger-alert" role="alert">
+                       {{ message }}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+              {% endif %}
 		<a href="/" class="site-logo">
 			<img src=" {% static 'img/logo--5.png' %} " alt="">
 		</a>
@@ -60,13 +73,15 @@
 				<li><a href="{% url 'about' %}">A propos de nous</a></li>
 				{% if user.is_authenticated and user.is_superuser %}
 					<li><a href="{% url 'requests' %}">Demandes</a></li>
+					<li><a href="{% url 'admin' %}">Taux</a></li>
+					<li><a href="{% url 'logout' %}">Deconnexion</a></li>
 				{% endif %}
 				
 			</ul>
 
 			<div class="header-right">
 				<div class="hr-btn hr-btn-2">
-					<a href="https://api.whatsapp.com/send?phone=+25761460068" class="text-white">
+					<a href="https://api.whatsapp.com/send?phone=+25761460068" target="_blank" class="text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                       +1 (438) 928-4750</a></div>
 			</div>
@@ -123,36 +138,8 @@
 						      <button type="button" id="wantRecieveBtn" class=" form-control btn btn-success btn-sm">Qu'il/elle recoive</button>
 						    </div>
 						</div>
-					<form class="hero-form " method="post"  action="." id="converterDiv">
-						
-						  <div  >
-							{% csrf_token %}
-	                      	{% for field in form %}
-	                      		<div class="form-group">
-	                      		<label for="to" class="text-white">{{ field.label }}</label>
-	                      		{{ field }}
-							 </div>
-	                      	{% endfor %}
-	                      
-                      	
-							<div class="alert alert-info show" role="alert">
-							  <strong  >Montant :  <span id="input"> </span> 
-							  						<span id="input_currency"> </span>
-							  </strong><br>
-							  <strong  >Taux :  1 <span id="c_from"></span> = 
-							  					<span id='value_to'></span> <span id="c_to" ></span>
-							  	</strong><br><hr>
-							  <strong class="badge badge-success badge-customized">Total :  
-							  					<span id="total" ></span>
-							  					<span id="total_currency" > </span>
-							  	</strong><br> 
-							  	<input  type="submit" name="action" value="Interessée? Passez à l'action en cliquant ici !" style="display:none;" id="userInfo" class="btn btn-primary btn-block text-white mt-2">
-							</div>
-						</div>
-
-					</form>
 					<!--SEND FORM-->
-					<form  class="hero-form " method="post"  style="display:none;" action="." id="wantSendDiv">
+					<form  class="hero-form " method="post" action="." id="wantSendDiv">
 						  {% csrf_token %}
 						<div class=" mt-5"  >
 							<div class="row ">
@@ -171,11 +158,9 @@
 									<div id="displaySend" class="btn btn-light btn-block" >0</div>
 								</div>
 							</div>
-							 <a class="prev">
-							    <span class="carousel-control-prev-icon"></span>
-							  </a>
 						</div>
 						<input  type="submit" name="send" value="Interessée? Passez à l'action en cliquant ici !" class="btn btn-primary btn-block text-white mt-2">
+						<a  type="button" href="{% url "home" %}" class="btn btn-outline-danger text-white mt-2 btn-block">Cliquer pour Actualiser le taux</a>
 					</form>
 					<!-- RECIEVE FORM -->
 
@@ -199,11 +184,9 @@
 									<div id="displayReciever" class="btn btn-light btn-block" >0</div>
 								</div>
 							</div>
-							<a class="prev">
-							    <span class="carousel-control-prev-icon"></span>
-							  </a>
 						</div>
 						<input  type="submit" name="recieve" value="Interessée? Passez à l'action en cliquant ici !" class="btn btn-primary btn-block text-white mt-2">
+						<a  type="button" href="{% url "home" %}" class="btn btn-outline-danger text-white mt-2 btn-block">Cliquer pour Actualiser le taux</a>
 					</form>
 				</div>
 
