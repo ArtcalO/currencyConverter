@@ -131,7 +131,7 @@
 					var values_sender_splited = splitValues(values_sender);
 					var value_from = reverseValue(values_sender_splited[0]);
 					var final_amount = amount/value_from;
-					$("#displayReciever").text(''+separatedNumber(final_amount)+'	CAD');
+					$("#displayReciever").text(''+separatedNumber(final_amount.toFixed(2))+'	CAD');
 				}
 				else {
 					$("#displayReciever").text('0');
