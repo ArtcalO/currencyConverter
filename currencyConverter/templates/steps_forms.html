@@ -33,32 +33,32 @@
                         <div class="row">
                             <div class="col">
                                 <div class="collapse multi-collapse" id="banques">
-
+                                  <p>Copier cette adresse de payement avant d'acceder à votre banque</p>
                                     <div class="list-group">
                                       <div class="row mb-2" >
                                         <div class="col-9" >
                                           <input type="text" class="form-control input-sm" value="instanttransfert21@gmail.com" id="myInput" >
                                         </div>
                                         <div class="col-3" >
-                                          <div class="input-group-button" onclick="myFunction()">
-                                            <clipboard-copy><svg class="octicon octicon-clippy" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></clipboard-copy>
+
+                                          <div style="cursor:pointer;" class="input-group-button"  onclick="myFunction()">
+                                            <h4><span class="badge badge-primary">Copier</span></h4>
                                           </div>
-                                          
                                         </div>
                                       </div>
-                                          <a href="https://www.rbcroyalbank.com/fr/" class="list-group-item list-group-item-action">
+                                          <a href="https://www.rbcroyalbank.com/fr/" target="_blank" class="list-group-item list-group-item-action">
                                            Banque Royale du Canada (RBC)
                                           </a>
-                                          <a href="https://www.cibc.com/fr/" class="list-group-item list-group-item-action">Banque Canadienne Impériale de Commerce (CIBC)</a>
-                                          <a href="https://www.bmo.com/" class="list-group-item list-group-item-action">Banque de Montréal (BMO)</a>
+                                          <a href="https://www.cibc.com/fr/" target="_blank" class="list-group-item list-group-item-action">Banque Canadienne Impériale de Commerce (CIBC)</a>
+                                          <a href="https://www.bmo.com/" target="_blank" class="list-group-item list-group-item-action">Banque de Montréal (BMO)</a>
 
-                                          <a href="https://www.bnc.ca/" class="list-group-item list-group-item-action">Banque nationale du Canada (BNC)</a>
+                                          <a href="https://www.bnc.ca/" target="_blank" class="list-group-item list-group-item-action">Banque nationale du Canada (BNC)</a>
 
-                                          <a href="https://www.banquelaurentienne.ca/fr/" class="list-group-item list-group-item-action">Banque Laurentienne du Canada (BLC)</a>
+                                          <a href="https://www.banquelaurentienne.ca/fr/" target="_blank" class="list-group-item list-group-item-action">Banque Laurentienne du Canada (BLC)</a>
 
-                                          <a href="https://www.td.com" class="list-group-item list-group-item-action">banque toronto-dominion (TD)</a>
+                                          <a href="https://www.td.com" target="_blank" class="list-group-item list-group-item-action">banque toronto-dominion (TD)</a>
 
-                                          <a href="https://www.desjardins.com/" class="list-group-item list-group-item-action">banque des jardins canada</a>
+                                          <a href="https://www.desjardins.com/" target="_blank" class="list-group-item list-group-item-action">banque des jardins canada</a>
                                         </div>
                                     </div>
                                 </div>
@@ -148,20 +148,20 @@
                               </button>
                           </div>
                           <div class="form-check-inline">
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lumicashModal">
+                              <button type="button" name="livraisonform" class="btn btn-primary" data-toggle="modal" data-target="#lumicashModal">
                                 LumiCash
                               </button>
                           </div>
                           <br>
                           <br>
                           <div class="form-check-inline">
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#livraisonModal">
-                                Livraison
+                            <button type="button" name="receveur" class="btn btn-primary" data-toggle="modal" data-target="#receveurModal">
+                                Decider par receveur
                               </button>
                           </div>
                           <div class="form-check-inline">
                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#compteModal">
-                                Compte
+                                Dépôt bancaire
                               </button>
                           </div>
                         </center>
@@ -226,29 +226,31 @@
           </div>
         <!-- END MODAL LUMICASH -->
 
-        <!-- MODAL LIVRAISON -->
-          <div class="modal" id="livraisonModal">
+<!-- MODAL RECEVEUR -->
+          <div class="modal" id="receveurModal">
             <div class="modal-dialog">
               <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                  <h4 class="modal-title">Livraison</h4>
+                  <h4 class="modal-title">Receveur</h4>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
                     <form method="post" action="." class="form-signin">
-                      {% csrf_token %}
+                        {% csrf_token %}
                         {{livraison_form.as_p}}
-                        <input type="submit" name="livraisonform" value="Envoyer">
+                        <input type="submit" name="receveur" value="Confirmer numero">
                       </form> 
                 </div>
+
+
               </div>
             </div>
           </div>
-        <!-- END MODAL LIVRAISON -->
+        <!-- END MODAL RECEVEUR -->
 
         <!-- MODAL COMPTE -->
 
