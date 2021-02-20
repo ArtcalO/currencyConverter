@@ -12,6 +12,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 amount_ = 0
+num_receveur = 0
 
 def splitData(data_string):
 	if '/' in data_string:
@@ -52,7 +53,7 @@ def index(request):
 @login_required(login_url=('login'))
 def requests(request):
 	trackings = Tracking.objects.all().order_by('-id')
-	paginator = Paginator(trackings, 5)
+	paginator = Paginator(trackings, 20)
 	try:
 		page_number = request.GET.get('page')
 	except:
@@ -97,18 +98,21 @@ def step1(request):
 	return render(request, 'steps_forms.html', locals())
 
 def step2(request):
-	
+	global num_receveur
 	step_form2 = StepForm2(request.POST or None)
 	if step_form2.is_valid():
 		request.session['step_form2'] = step_form2.cleaned_data
+		num_receveur = step_form2.cleaned_data['number']
 		return redirect(step3)
 	return render(request, 'steps_forms.html', locals())
 
 def step3(request):
 	choice2 = True
+	global num_receveur
+	data = {'num_receveur':num_receveur}
 	ecocash_form=EcoCashForm(request.POST or None)
 	lumicash_form=LumiCashForm(request.POST or None)
-	livraison_form=LivraisonForm(request.POST or None)
+	livraison_form=LivraisonForm(request.POST or None, initial=data)
 	compte_form=CompteForm(request.POST or None)
 
 	if "ecoform" in request.POST:
@@ -130,21 +134,19 @@ def step3(request):
 
 				name_sender = step_1['firstname'],
 				subname_sender = step_1['lastname'],
-				email_sender = step_1['email'],
 				phone_sender = step_1['number'],
 
 				name_reciever = step_2['firstname'],
 				subname_reciever = step_2['lastname'],
-				email_reciever = step_2['email'],
 				phone_reciever = step_2['number'],
 				)
 			tracking_obj.ecocash = eco_form['ecocash']
 			tracking_obj.ecocash_holder = eco_form['ecocash_holder']
 			tracking_obj.save()
-			messages.success(requests, "Vos informations ont été envoyées avec success. Notre equipe se charge d la suite. N'hesitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
+			messages.success(request, "Vos informations ont été envoyées avec success. Notre équipe se charge de la suite. N'hésitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
 			return redirect(index)
 		else:
-			messages.error("Une erreur de saisie est survenue, veuillez réessayer")
+			messages.error(request,"Une erreur de saisie est survenue, veuillez réessayer")
 			return redirect(index)
 
 	if "lumiform" in request.POST:
@@ -165,24 +167,22 @@ def step3(request):
 
 				name_sender = step_1['firstname'],
 				subname_sender = step_1['lastname'],
-				email_sender = step_1['email'],
 				phone_sender = step_1['number'],
 
 				name_reciever = step_2['firstname'],
 				subname_reciever = step_2['lastname'],
-				email_reciever = step_2['email'],
 				phone_reciever = step_2['number'],
 				)
 			tracking_obj.lumicash = lumicash_data['lumicash']
 			tracking_obj.lumicash_holder = lumicash_data['lumicash_holder']
 			tracking_obj.save()
-			messages.success(requests, "Vos informations ont été envoyées avec success. Notre equipe se charge d la suite. N'hesitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
+			messages.success(request, "Vos informations ont été envoyées avec success. Notre équipe se charge de la suite. N'hésitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
 			return redirect(index)
 		else:
-			messages.error("Une erreur de saisie est survenue, veuillez réessayer")
+			messages.error(request,"Une erreur de saisie est survenue, veuillez réessayer")
 			return redirect(index)
 
-	if "livraisonform" in request.POST:
+	if "receveur" in request.POST:
 		if livraison_form.is_valid(): 
 			livraison_data = livraison_form.cleaned_data
 			first_ = request.session.pop('first_form',{})
@@ -200,20 +200,18 @@ def step3(request):
 
 				name_sender = step_1['firstname'],
 				subname_sender = step_1['lastname'],
-				email_sender = step_1['email'],
 				phone_sender = step_1['number'],
 
 				name_reciever = step_2['firstname'],
 				subname_reciever = step_2['lastname'],
-				email_reciever = step_2['email'],
 				phone_reciever = step_2['number'],
 				)
-			tracking_obj.tel_livraison=livraison_data['tel_livraison']
+			tracking_obj.tel_livraison = livraison_data['num_receveur']
 			tracking_obj.save()
-			messages.success(requests, "Vos informations ont été envoyées avec success. Notre equipe se charge d la suite. N'hesitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
+			messages.success(request, "Vos informations ont été envoyées avec success. Notre équipe se charge de la suite. N'hésitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
 			return redirect(index)
 		else:
-			messages.error("Une erreur de saisie est survenue, veuillez réessayer")
+			messages.error(request,"Une erreur de saisie est survenue, veuillez réessayer")
 			return redirect(index)
 
 	if "compteform" in request.POST:
@@ -234,12 +232,10 @@ def step3(request):
 
 				name_sender = step_1['firstname'],
 				subname_sender = step_1['lastname'],
-				email_sender = step_1['email'],
 				phone_sender = step_1['number'],
 
 				name_reciever = step_2['firstname'],
 				subname_reciever = step_2['lastname'],
-				email_reciever = step_2['email'],
 				phone_reciever = step_2['number'],
 				)
 			
@@ -247,10 +243,10 @@ def step3(request):
 			tracking_obj.account_holder = compte_data['account_holder']
 			tracking_obj.bank_name = compte_data['bank_name']
 			tracking_obj.save()
-			messages.success(requests, "Vos informations ont été envoyées avec success. Notre equipe se charge d la suite. N'hesitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
+			messages.success(request, "Vos informations ont été envoyées avec success. Notre équipe se charge de la suite. N'hésitez surtout pas à nous contacter sur whatsapp si vous avez des questions")
 			return redirect(index)
 		else:
-			messages.error("Une erreur de saisie est survenue, veuillez réessayer")
+			messages.error(request,"Une erreur de saisie est survenue, veuillez réessayer")
 			return redirect(index)
 	return render(request, 'steps_forms.html', locals())
 
@@ -292,7 +288,7 @@ def Connexion(request):
 			messages.success(request, "You're now connected!")
 			return redirect('admin')
 		else:
-			messages.error(request, "logins incorrect!")
+			messages.error(request,request, "logins incorrect!")
 	connexion_form = ConnexionForm()
 	return render(request, template_name, locals())
 
