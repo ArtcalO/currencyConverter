@@ -33,14 +33,12 @@ class Tracking(models.Model):
 
 	name_sender = models.CharField(max_length=100)
 	subname_sender = models.CharField(max_length=100)
-	email_sender = models.EmailField()
 	phone_sender = models.CharField(max_length=100)
 
 	# fields for reciever
 
 	name_reciever = models.CharField(max_length=100)
 	subname_reciever = models.CharField(max_length=100)
-	email_reciever = models.EmailField()
 	phone_reciever = models.CharField(max_length=100)
 
 	# Livraison 
