@@ -111,26 +111,20 @@ class StepForm1(forms.Form):
 	firstname = forms.CharField(
 		widget=forms.TextInput(
 			attrs={
-				'placeholder':'Nom ','class':'form-control'
+				'placeholder':'Votre nom ','class':'form-control'
 				}
 			), label='Nom ', required=True)
 	lastname = forms.CharField(
 		widget=forms.TextInput(
 			attrs={
-				'placeholder':'Prenom ','class':'form-control'
+				'placeholder':'Votre prenom ','class':'form-control'
 				}
 			), label='Prenom ', required=True)
-	email = forms.EmailField(
-		widget=forms.TextInput(
-			attrs={
-				'placeholder':'Email  ','class':'form-control'
-				}
-			), label='Email ', required=True)
 
 	number = forms.CharField(
-		widget=forms.NumberInput(
+		widget=forms.TextInput(
 			attrs={
-				'placeholder':'Tel ','class':'form-control'
+				'placeholder':'Votre téléphone ','class':'form-control','type':'text','value':'+1'
 				}
 			), label='Tel', required=True)
 
@@ -147,19 +141,13 @@ class StepForm2(forms.Form):
 				'placeholder':'Prenom ','class':'form-control'
 				}
 			), label='Prenom destinataire', required=True)
-	email = forms.EmailField(
-		widget=forms.TextInput(
-			attrs={
-				'placeholder':'Email destinataire ','class':'form-control'
-				}
-			), label='Email destinataire', required=True)
 
 	number = forms.CharField(
-		widget=forms.NumberInput(
+		widget=forms.TextInput(
 			attrs={
-				'placeholder':'Te. destinataire ','class':'form-control'
+				'placeholder':'Tel. destinataire ','class':'form-control','type':'text','value':'+257'
 				}
-			), label='Tel. destinataire', required=True)
+			), label='Téléphone destinataire', required=True)
 
 
 class EcoCashForm(forms.Form):
@@ -175,13 +163,13 @@ class LumiCashForm(forms.Form):
 		'placeholder':'Numero lumicash','class':'form-control','type':'number'
 		}),label='Lumicash', required=True)
 	lumicash_holder = forms.CharField(widget=forms.TextInput(attrs={
-		'placeholder':'Numero detenteur lumicash','class':'form-control','type':'text'
+		'placeholder':'Nom detenteur lumicash','class':'form-control','type':'text'
 		}),label='Nom detenteur lumicash', required=True)
 
 class LivraisonForm(forms.Form):
-	tel_livraison = forms.CharField(widget=forms.NumberInput(attrs={
-		'placeholder':'destinataire','class':'form-control','type':'number'
-		}),label='Telephone Livraison')
+	num_receveur = forms.CharField(widget=forms.NumberInput(attrs={
+		'placeholder':'Numero receveur','class':'form-control','type':'text'
+		}),label='Confirmer numero receveur')
 
 class CompteForm(forms.Form):
 	account_number = forms.CharField(widget=forms.TextInput(
