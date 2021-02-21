@@ -172,15 +172,15 @@ class LivraisonForm(forms.Form):
 		}),label='Confirmer numero receveur')
 
 class CompteForm(forms.Form):
-	account_number = forms.CharField(widget=forms.TextInput(
+	account_number = forms.CharField(widget=forms.NumberInput(
 		attrs={
-			'placeholder':'','class':'form-control'
+			'placeholder':'','class':'form-control','type':'text'
 		}), label='Numéro de compte')
 	account_holder = forms.CharField(widget=forms.TextInput(
 		attrs={
-			'placeholder':'','class':'form-control'
+			'placeholder':'','class':'form-control','type':'text'
 		}), label='Nom detenteur compte')
 	bank_name = forms.CharField(widget=forms.TextInput(
 		attrs={
-			'placeholder':'','class':'form-control'
+			'placeholder':'','class':'form-control','type':'text'
 		}), label='Nom de la banque')
