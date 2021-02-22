@@ -6,10 +6,10 @@
 	<!-- Page top Section end -->
 	<section class="page-top-section set-bg" data-setbg=" {% static 'img/page-top-bg/1.jpg' %} ">
 		<div class="container">
-			<h2>About us</h2>
+			<h2>Comment ça marche</h2>
 			<nav class="site-breadcrumb">
-				<a class="sb-item" href="#">Home</a>
-				<span class="sb-item active">About us</span>
+				<a class="sb-item" href="#">Accueil</a>
+				<span class="sb-item active">Comment ça marche</span>
 			</nav>
 		</div>
 	</section>
@@ -20,43 +20,34 @@
 	<!-- About Section end -->
 	<section class="about-section spad">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-7">
+				<div class="col-lg">
 					<div class="about-text">
-						<h2>A team to help you</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl.</p>
-						<a href="#" class="site-btn mb-2">Find out more</a>
+						<h2>Comment ça marche</h2>
+						<p>SERVICE DE TRANSFERT D'ARGENT SIMPLE, SÉCURISÉ, FAIBLE COÛT ET RAPIDE!
+							<br>
+						Lorsque vous devez envoyer de l'argent à votre famille et à vos amis, INSTANT TRANSFER EST VOTRE PARTENAIRE DE PREMIER CHOIX. Notre système fournit un service rapide et fiable pour les envois de fonds et les transferts d'argent. INSTANT TRANSFER permet une plate-forme de transfert de fonds utilisateur unique, simple et conviviale en trois séquences. 
+						<br>
+						Suivez ces trois étapes simples :
+						<br>
+						<strong>1. Convertisseur de monnaie :</strong><br>
+						Sur « Accueil », une page vous sera présentée avec sur le côté droit, un convertisseur de monnaie. Veuillez d’abord choisir entre l’option « je veux envoyer » et « Qu’il/elle reçoive » selon le montant à envoyer ou à percevoir ; Et cet outil vous aidera à connaître les détails de votre transaction. Vous pouvez saisir le montant que vous souhaitez transférer frais inclus, et lorsque vous saisissez la devise de votre correspondant, vous vous rendez compte de la faiblesse de nos frais et du montant à percevoir ! Notre principale devise est le Dollar Canadien, à convertir dans la devise du destinataire (BIF).
+						<br>
+
+						<strong>2. Connectez-vous à votre banque en ligne :</strong><br>
+						En utilisant les identifiants de votre banque en ligne, envoyer votre somme par INTERAC sur l’adresse « <a href="mailto:instanttransfer257@gmail.com">instanttransfer257@gmail.com</a>». 
+						C'EST AUSSI FACILE QUE ÇA !
+						<br>
+
+						<strong>3. Envoyer du formulaire de demande d’argent :</strong><br>
+						Après votre transaction, veuillez passer à l’étape suivante qui consiste à fournir les informations de l’Expéditeur et celles du destinataire, ainsi de nous proposer le moyen de livraison.
+						Il existe trois sections principales : les détails de l'expéditeur, les détails du destinataire et les détails de la transaction. Lorsque vous décidez d'envoyer le formulaire de demande, un accuse de réception sous forme de notification vous sera présenté juste en dessous de la barre de recherche.
+						Cela nous aide à collecter les informations obligatoires afin de contacter de contacter le destinataire pour les services de remise d'argent. 
+						<br>
+
+						<strong>VOUS POUVEZ AVOIR DES QUESTIONS, NOTRE ÉQUIPE D'ASSISTANCE EST TOUJOURS DISPONIBLE POUR VOUS.
+						N'HÉSITEZ PAS À NOUS CONTACTER!</strong></p>
 					</div>
 				</div>
-				<div class="col-lg-5">
-
-					<form class="hero-form " method="post" enctype="multipart/form-data" action="." id="form">
-
-						{% csrf_token %}
-                      	{% for field in form %}
-                      		<div class="form-group">
-                      		<label for="to" class="text-white">{{ field.label }}</label>
-                      		{{ field }}
-						 </div>
-                      	{% endfor %}
-                      	
-
-						<div class="alert alert-info show" role="alert">
-						  <strong  >Montant :  <span id="input"> </span> 
-						  						<span id="input_currency"> </span>
-						  </strong><br>
-						  <strong  >Taux :  1 <span id="c_from"></span> = 
-						  					<span id='value_to'></span> <span id="c_to" ></span>
-						  	</strong><br><hr>
-						  <strong class="badge badge-success badge-customized">Total :  
-						  					<span id="total" ></span>
-						  					<span id="total_currency" > </span>
-						  	</strong><br> 
-						  	<input  type="submit" name="action" value="Interessée? Passez à l'action en cliquant ici !" style="display:none;" id="userInfo" class="btn btn-primary btn-block text-white mt-2">
-						</div>
-					</form>
-				</div>
-		</div>
 	</section>
 	<!-- About Section end -->
 

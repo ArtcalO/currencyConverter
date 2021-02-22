@@ -338,11 +338,6 @@ def update(request, country_id):
 	return render(request, "forms.html", locals())
 
 def about(request):
-	form = ConversionForm(request.POST)
-	if "action" in request.POST:
-		if form.is_valid():
-			request.session['first_form'] = form.cleaned_data
-			return redirect(choice)
 	return render(request, 'about.html', locals())
 
 def contact(request):

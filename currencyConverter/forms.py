@@ -106,8 +106,9 @@ class ContactForm(forms.Form):
 class StepForm1(forms.Form):
 	amount = forms.CharField(
 		widget=forms.NumberInput(attrs={
-			'placeholder':'Amount', 'class':'form-control'
+			'placeholder':'', 'class':'form-control'
 			}), label='Montant Saisie', required=True)
+
 	firstname = forms.CharField(
 		widget=forms.TextInput(
 			attrs={
