@@ -12,3 +12,5 @@ Money Converter App in django
 
 5. To make the email work u must follow steps to configure your Gmail account avaible on https://dev.to/abderrahmanemustapha/how-to-send-email-with-django-and-gmail-in-production-the-right-way-24ab
 
+resolving commits issues
+
